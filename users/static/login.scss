@@ -1,0 +1,32 @@
+@import '../../car_django/static/main';
+
+
+.loginUser {
+    width: 100vw;
+    height: 100vh;
+    &__box {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        &-wrapper {
+            position: relative;
+            width: 400px;
+            height: 300px;
+            border: 2px solid #fff;
+            &--header {
+                color: #fff;
+            }
+            &--label {
+                position: relative;
+                width: 300px;
+            }
+
+        }
+    }
+
+}
+
+label {
+    font-size: 15px;
+}

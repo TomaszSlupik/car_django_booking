@@ -1,0 +1,43 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #0f2447;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+.loginUser {
+  width: 100vw;
+  height: 100vh;
+}
+.loginUser__box {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.loginUser__box-wrapper {
+  position: relative;
+  width: 400px;
+  height: 300px;
+  border: 2px solid #fff;
+}
+.loginUser__box-wrapper--header {
+  color: #fff;
+}
+.loginUser__box-wrapper--label {
+  position: relative;
+  width: 300px;
+}
+
+label {
+  font-size: 15px;
+}
+
+/*# sourceMappingURL=login.css.map */
