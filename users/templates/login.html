@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'login.css' %}">
+</head>
+<body>
+    <div class="loginUser">
+        <div class="loginUser__box">
+            <div class="loginUser__box-wrapper">
+                <div class="loginUser__box-wrapper--header">
+                    <h2 class="text-center">Login</h2>
+                    <form id="login-form" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="name">Nazwa:</label>
+                            <input type="text" class="form-control loginUser__box-wrapper--label" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Hasło:</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                        <button type="submit" class="btn 
+                        btn-primary btn-block">Zaloguj się</button>
+                    </form>
+                </div>
+                <div>
+                    Nie masz jeszcze konta w Car Slupik Rent? 
+                </div>
+    
+                <form action="{% url 'register' %}" method="get">
+                    <button 
+                    class="btn btn-warning"
+                    type="submit" >
+                        Zrejestruj się
+                    </button>
+                </form>
+            </div>  
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

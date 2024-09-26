@@ -1,0 +1,15 @@
+<ul>
+    {% for booking in bookings %}
+        <li>
+            <h3>{{ booking.name_car_booking }}</h3>
+            {% if booking.image_car %}
+                <img 
+                style="width: 200px; height: 200px;"
+                
+                src="{{ booking.image_car.url }}" alt="{{ booking.name_car_booking }}">
+            {% else %}
+                <p>Brak zdjęcia</p>
+            {% endif %}
+        </li>  
+    {% endfor %}
+</ul>
