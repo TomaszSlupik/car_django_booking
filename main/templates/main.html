@@ -1,0 +1,23 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="main">
+        <main>
+            <section class="cardBooking">
+                <div class="cardBooking__wrapper">
+                    <div class="cardBooking__wrapper-card about">O nas</div>
+                    <div class="cardBooking__wrapper-card reserved">
+                        <form action="{% url 'booking_list' %}" method="get">
+                            <button
+                            class="btn btn-primary"
+                            type="submit"
+                            >
+                                Zobacz
+                            </button>
+                        </form>
+                        Rezerwacje</div>
+                    <div class="cardBooking__wrapper-card opinion">Opinie</div>
+                    <div class="cardBooking__wrapper-card contact">Kontakt</div>
+                </div>            
+{% endblock %}
