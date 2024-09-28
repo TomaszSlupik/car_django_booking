@@ -1,3 +1,6 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
 <form method="POST">
     {% csrf_token %}
     <label for="username">Login:</label>
@@ -11,3 +14,4 @@
 
     <button type="submit">Zarejestruj się</button>
 </form>
+{% endblock %}
