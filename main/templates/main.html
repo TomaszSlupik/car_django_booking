@@ -1,23 +1,67 @@
 {% extends 'index.html' %}
 {% load static %}
-
 {% block content %}
     <div class="main">
         <main>
             <section class="cardBooking">
                 <div class="cardBooking__wrapper">
-                    <div class="cardBooking__wrapper-card about">O nas</div>
+                    <div class="cardBooking__wrapper-card about">
+                        <img 
+                        class="cardBooking__wrapper-card--img"
+                        src="{% static 'img/aboutus.jpg' %}"  alt="O wypożyczalni">
+                        O nas
+                        <form action="{% url 'aboutus' %}" method="get">
+                            <button
+                            class="btnTest"
+                            type="submit"
+                            >
+                                Zobacz
+                            </button>
+                        </form>
+                    
+                    </div>
                     <div class="cardBooking__wrapper-card reserved">
+                        <img 
+                        class="cardBooking__wrapper-card--img"
+                        src="{% static 'img/reservations.jpg' %}"  alt="Rezerwacja">
                         <form action="{% url 'booking_list' %}" method="get">
                             <button
-                            class="btn btn-primary"
+                            class="btnTest"
                             type="submit"
                             >
                                 Zobacz
                             </button>
                         </form>
                         Rezerwacje</div>
-                    <div class="cardBooking__wrapper-card opinion">Opinie</div>
-                    <div class="cardBooking__wrapper-card contact">Kontakt</div>
-                </div>            
+                    <div class="cardBooking__wrapper-card opinion">
+                        <img 
+                        class="cardBooking__wrapper-card--img"
+                        src="{% static 'img/opinion.jpg' %}"  alt="Opinie">
+                        Opinie
+                        <form action="{% url 'opinions' %}" method="get">
+                            <button
+                            class="btnTest"
+                            type="submit"
+                            >
+                                Zobacz
+                            </button>
+                        </form>
+                    </div>
+                    <div class="cardBooking__wrapper-card contact">
+                            <img 
+                            class="cardBooking__wrapper-card--img"
+                            src="{% static 'img/contact.jpg' %}"  alt="kontakt do wypożyczalni">
+                            <form action="{% url 'contacts' %}" method="get">
+                                <button
+                                class="btnTest"
+                                type="submit"
+                                >
+                                    Zobacz
+                                </button>
+                            </form>
+                            Kontakt
+                        </div>
+                </div>   
+                
+
 {% endblock %}
