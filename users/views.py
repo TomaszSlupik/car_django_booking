@@ -6,10 +6,14 @@ from rest_framework.response import Response
 from .serializers import LoginSerializer, RegisterSerializer
 from django.http import HttpResponse
 from django.urls import reverse
+from rest_framework import status
+from rest_framework.permissions import AllowAny
 
 
-# Create your views here.
+
 class LoginView(APIView):
+    permission_classes = [AllowAny]
+
     def get(self, request):
         return render(request, "login.html")
 
@@ -20,9 +24,11 @@ class LoginView(APIView):
             refresh = RefreshToken.for_user(user)
             request.session["refresh"] = str(refresh)
             request.session["access"] = str(refresh.access_token)
-            return redirect("/main/")
 
-        return redirect("error_login")
+            return Response({
+                "refresh": str(refresh),
+                "access": str(refresh.access_token)
+            }, status=status.HTTP_200_OK)
 
 
 def error_login_view(request):
@@ -34,6 +40,7 @@ def come_back_to_main_page(request):
 
 
 class RegisterView(APIView):
+    permission_classes = [AllowAny]
     def get(self, request):
         return render(request, "register.html")
 
