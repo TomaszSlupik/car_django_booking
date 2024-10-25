@@ -35,7 +35,7 @@
 }
 
 .booked {
-    filter: brightness(50%); /* Przyciemnia całą kartę */
+    filter: brightness(50%); 
     position: relative;
 }
 
@@ -45,7 +45,7 @@
     top: 10px;
     right: 10px;
     font-size: 1.5em;
-    background-color: rgba(255, 255, 255, 0.8); /* Opcjonalne tło dla napisu */
+    background-color: rgba(255, 255, 255, 0.8); 
     padding: 5px;
     border-radius: 5px;
     font-weight: bold;
