@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+    <div>
+        <form action="{% url 'main' %}" method="get">
+            <button
+            class="btnTest"
+            type="submit"
+            >
+                Powrót
+            </button>
+        </form>
+      O nas
+    </div>
+{% endblock %}
