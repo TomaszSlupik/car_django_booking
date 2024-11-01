@@ -13,7 +13,7 @@
         <div class="loginUser__box">
             <div class="loginUser__box-wrapper">
                 <div class="loginUser__box-wrapper--header">
-                    <h2 class="text-center">Login</h2>
+                    <h2 class="loginUser__box-wrapper--header---login text-center">Login</h2>
                     <form id="login-form" method="POST" onsubmit="checkLoginUser(event)">
                         {% csrf_token %}
                         <div class="form-group">
@@ -28,13 +28,13 @@
                         btn-primary btn-block">Zaloguj się</button>
                     </form>
                 </div>
-                <div>
+                <div class="loginUser__box-wrapper--underText">
                     Nie masz jeszcze konta w Car Slupik Rent? 
                 </div>
     
                 <form action="{% url 'register' %}" method="get">
                     <button 
-                    class="btn btn-warning"
+                    class="btn btn-warning loginUser__box-wrapper--btnRegister"
                     type="submit" >
                         Zrejestruj się
                     </button>

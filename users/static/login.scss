@@ -11,23 +11,100 @@
         transform: translate(-50%, -50%);
         &-wrapper {
             position: relative;
-            width: 400px;
+            width: 370px;
             height: 300px;
-            background-color:cornflowerblue;
-            border: 2px solid #fff;
+            background: linear-gradient(135deg, gray, #d1d1d1);
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             &--header {
                 color: #fff;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                &---login {
+                    font-size: 2rem;
+                    font-weight: 700;
+                    margin-top: 28px;
+                }
             }
+
+            &--underText {
+                font-size: 1.5rem;
+                font-weight: 300;
+                margin-left: 1.2em;
+                margin-top: 0.8em;
+            }
+
+            &--btnRegister {
+                margin-left: 1.8em;
+            }
+
             &--label {
                 position: relative;
                 width: 300px;
             }
-
+        }
+        &-wrapper:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2), 0 10px 10px rgba(0, 0, 0, 0.15);
         }
     }
 
 }
 
+
+
+
+@media (min-width: 576px) {
+    .loginUser {
+        &__box {
+            &-wrapper {
+                width: 470px;
+                height: 300px;
+                &--header {
+                    &---login {
+                        font-size: 2.2rem; 
+                    }
+                }
+                &--underText {
+                    font-size: 1.8rem; 
+                }
+                input {
+                    padding: 14px; 
+                    font-size: 1.1rem; 
+                }
+            }
+        }
+    }
+}
+
+
+@media (min-width: 768px) {
+    .loginUser {
+        &__box {
+            &-wrapper {
+                width: 570px;
+                height: 300px;
+                &--header {
+                    &---login {
+                        font-size: 2.5rem; 
+                    }
+                }
+                &--underText {
+                    font-size: 2rem; 
+                }
+
+            }
+        }
+    }
+}
+
+
 label {
-    font-size: 15px;
+    font-size: 1.5rem;
+    font-weight: 500;
 }
