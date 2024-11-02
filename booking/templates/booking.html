@@ -7,7 +7,20 @@
 
 {% block content %}
 <div class="booking">
+
     <div class="booking__wrapper">
+        <div class="sticky-header text-center">
+            <h1>Rezerwacja Samochodu</h1>
+        </div>
+        <form action="{% url 'main' %}" method="get">
+            <button
+            class="btnTest"
+            type="submit"
+            >
+                Powrót
+            </button>
+        </form>
+        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-3  g-4">
             {% for booking in bookings %}
                 <div class="col booking__wrapper-card">
@@ -28,20 +41,43 @@
                                 <p class="text-danger font-weight-bold">ZAREZERWOWANE</p>
                             {% endif %}
                         </div>
-                    </div>
-                    <div class="booking__wrapper-card--btn">
-                        {% if booking.is_booked %}
-                        <button 
-                        disabled
-                        class="btn btn-warning">
-                            Rezerwuj
-                        </button>
-                        {% else %}
-                        <button 
-                        class="btn btn-warning btnReservation">
-                            Rezerwuj
-                        </button>
-                        {% endif %}
+
+                        <div class="booking__wrapper-card--date p-3">
+                            <h5 class="text-center mb-3">Wybierz Daty Rezerwacji</h5>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="start_date_reservation_{{ booking.id }}">Data rozpoczęcia:</label>
+                                    <input type="date" id="start_date_reservation_{{ booking.id }}" 
+                                    class="form-control" 
+                                    required
+                                    value="{{ booking.start_date|date:'Y-m-d' }}"
+                                    >
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="end_date_reservation_{{ booking.id }}">Data zakończenia:</label>
+                                    <input type="date" id="end_date_reservation_{{ booking.id }}" 
+                                    class="form-control" 
+                                    required
+                                    value="{{ booking.end_date|date:'Y-m-d' }}"
+                                    >
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="booking__wrapper-card--btn">
+                            {% if booking.is_booked %}
+                            <button 
+                            disabled
+                            class="btn btn-warning">
+                                Rezerwuj
+                            </button>
+                            {% else %}
+                            <button 
+                            class="btn btn-warning btnReservation" data-booking-id="{{ booking.id }}">
+                                Rezerwuj
+                            </button>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
             {% endfor %}
@@ -53,6 +89,8 @@
 {% block extra_js %}
 <script src="{% static 'js/main.js' %}"></script> 
 {% endblock %}
+
+
 
   {% endblock %}
 
