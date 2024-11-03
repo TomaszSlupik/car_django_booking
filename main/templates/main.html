@@ -5,7 +5,9 @@
         <main>
             <section class="cardBooking">
                 <div class="cardBooking__wrapper">
-                    <div class="cardBooking__wrapper-card about">
+                    
+                    <!-- <div class="cardBooking__wrapper-card about">
+                        <div class="cardBooking__wrapper-card--shadow"></div>
                         <img 
                         class="cardBooking__wrapper-card--img"
                         src="{% static 'img/aboutus.jpg' %}"  alt="O wypożyczalni">
@@ -19,7 +21,26 @@
                             </button>
                         </form>
                     
+                    </div> -->
+
+                    <div class="cardBooking__wrapper-card about">
+                        <div class="cardBooking__wrapper-card--shadow">
+                            <div class="cardBooking__content">
+                                <h2>O nas</h2>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas dicta molestiae fuga. Nam rerum delectus eos dignissimos cum explicabo nihil suscipit tempore veniam, debitis aut exercitationem, et quae! Blanditiis, eos?</p>
+                                <form action="{% url 'aboutus' %}" method="get">
+                                    <button class="btnTest" type="submit">Zobacz</button>
+                                </form>
+                            </div>
+                        </div>
+                        <img 
+                            class="cardBooking__wrapper-card--img"
+                            src="{% static 'img/aboutus.jpg' %}" alt="O wypożyczalni">
                     </div>
+                    
+
+
+
                     <div class="cardBooking__wrapper-card reserved">
                         <img 
                         class="cardBooking__wrapper-card--img"
