@@ -7,18 +7,26 @@
 
 {% block content %}
     <div class="loginUser">
+        <div class="alert alert-danger d-none loginUser__alert" id="login-error" role="alert">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2"/>
+              </svg>
+              &nbsp;
+            <span id="alert-message"></span>
+        </div>
         <img 
         style="width: 100vw; height: 100vh; background-color: black;"
         src="{% static 'img/bg.jpg' %}"  alt="Wypożyczalnia samochodów - podgląd samochodów">
         <div class="loginUser__box">
             <div class="loginUser__box-wrapper">
                 <div class="loginUser__box-wrapper--header">
-                    <h2 class="loginUser__box-wrapper--header---login text-center">Login</h2>
+                    <h2 class="loginUser__box-wrapper--header---login text-center">Zaloguj się</h2>
+                    
                     <form id="login-form" method="POST" onsubmit="checkLoginUser(event)">
                         {% csrf_token %}
                         <div class="form-group">
                             <label for="name">Nazwa:</label>
-                            <input type="text" class="form-control loginUser__box-wrapper--label" id="name" name="name" required>
+                            <input type="text" class="form-control loginUser__box-wrapper--label input" id="name" name="name" required>
                         </div>
                         <div class="form-group">
                             <label for="password">Hasło:</label>
@@ -29,14 +37,14 @@
                     </form>
                 </div>
                 <div class="loginUser__box-wrapper--underText">
-                    Nie masz jeszcze konta w Car Slupik Rent? 
+                    Nie masz jeszcze konta w <span>Car Slupik Rent? </span>
                 </div>
     
                 <form action="{% url 'register' %}" method="get">
                     <button 
                     class="btn btn-warning loginUser__box-wrapper--btnRegister"
                     type="submit" >
-                        Zrejestruj się
+                        Zarejestruj się
                     </button>
                 </form>
             </div>  
