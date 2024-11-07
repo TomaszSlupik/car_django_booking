@@ -1,15 +1,80 @@
 {% extends 'index.html' %}
 {% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'aboutus.css' %}">
+{% endblock %}
+
+
 {% block content %}
-    <div>
-        <form action="{% url 'main' %}" method="get">
-            <button
-            class="btnTest"
-            type="submit"
-            >
-                Powrót
-            </button>
-        </form>
-      O nas
+<div class="aboutus">
+    <h1>O Nas</h1>
+    <div class="aboutus__box">
+        <div class="aboutus__box-wrapper">
+            <div class="text-section">
+                <h3>Innowacyjne rozwiązania</h3>
+                <p>Stale rozwijamy nasze usługi, wprowadzając nowoczesne technologie.</p>
+            </div>
+            <div class="aboutus__box-wrapper--container">
+                <div class="aboutus__box-wrapper--container---drop" style="--clr:#db4ef4;">
+                    <div class="content">
+                        <h2 class="content__header">01</h2>
+                        <p>Nasze pojazdy są regularnie serwisowane, aby zapewnić pełne bezpieczeństwo.</p>
+                        <a href="#">Więcej</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="aboutus__box-wrapper">
+            <div class="text-section">
+                <h3>Zadowolenie klientów</h3>
+                <p>Dbamy o to, aby nasi klienci byli w pełni usatysfakcjonowani.</p>
+            </div>
+            <div class="aboutus__box-wrapper--container">
+                <div class="aboutus__box-wrapper--container---drop" style="--clr:#ff7043 ;">
+                    <div class="content">
+                        <h2 class="content__header">02</h2>
+                        <p>Oferujemy wsparcie techniczne 24/7 dla naszych klientów.</p>
+                        <a href="#">Więcej</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="aboutus__box-wrapper">
+            <div class="text-section">
+                <h3>Wieloletnie doświadczenie</h3>
+                <p>Posiadamy ponad 10-letnie doświadczenie w branży.</p>
+            </div>
+            <div class="aboutus__box-wrapper--container">
+                <div class="aboutus__box-wrapper--container---drop" style="--clr:#f4a03d;">
+                    <div class="content">
+                        <h2 class="content__header">03</h2>
+                        <p>Stale rozwijamy nasze usługi, wprowadzając nowoczesne technologie.</p>
+                        <a href="#">Więcej</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="aboutus__box-wrapper">
+            <div class="text-section">
+                <h3>Bezpieczeństwo</h3>
+                <p>Nasze pojazdy są regularnie serwisowane, aby zapewnić pełne bezpieczeństwo.</p>
+            </div>
+            <div class="aboutus__box-wrapper--container">
+                <div class="aboutus__box-wrapper--container---drop" style="--clr:#00d084;">
+                    <div class="content">
+                        <h2 class="content__header">04</h2>
+                        <p>Nasze innowacyjne rozwiązania są zawsze na czołowej pozycji w branży.</p>
+                        <a href="#">Więcej</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
+</div>
+
 {% endblock %}
