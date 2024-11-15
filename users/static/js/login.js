@@ -19,11 +19,20 @@ async function checkLoginUser(e) {
             window.location.href = '/main/';
         } else {
             const error = await res.json();
-            alert (error.error)
-            console.log('Logowanie nie powiodło się');
+            const alertDiv = document.getElementById('login-error');
+            const alertMessage = document.getElementById('alert-message');
+
+            alertMessage.textContent = error.error; 
+            alertDiv.classList.remove('d-none'); 
+            
+            setTimeout(() => {
+                alertDiv.classList.add('d-none'); 
+            }, 3000);
+        
         }
     } catch (error) {
         console.log('Błąd:', error); 
+        
     }
 }
 
