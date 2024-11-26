@@ -6,30 +6,18 @@
             <section class="cardBooking">
                 <div class="cardBooking__wrapper">
                     
-                    <!-- <div class="cardBooking__wrapper-card about">
-                        <div class="cardBooking__wrapper-card--shadow"></div>
-                        <img 
-                        class="cardBooking__wrapper-card--img"
-                        src="{% static 'img/aboutus.jpg' %}"  alt="O wypożyczalni">
-                        O nas
-                        <form action="{% url 'aboutus' %}" method="get">
-                            <button
-                            class="btnTest"
-                            type="submit"
-                            >
-                                Zobacz
-                            </button>
-                        </form>
-                    
-                    </div> -->
-
                     <div class="cardBooking__wrapper-card about">
                         <div class="cardBooking__wrapper-card--shadow">
                             <div class="cardBooking__content">
                                 <h2>O nas</h2>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas dicta molestiae fuga. Nam rerum delectus eos dignissimos cum explicabo nihil suscipit tempore veniam, debitis aut exercitationem, et quae! Blanditiis, eos?</p>
+                                <p>
+                                    Wypożyczalnia Car Slupik Rent - dynamicznie rozwijającą się firmą, 
+                                    dostarcza niezawodną jakość usług w zakresie wynajmu pojazdów.
+                                </p>
                                 <form action="{% url 'aboutus' %}" method="get">
-                                    <button class="btnTest" type="submit">Zobacz</button>
+                                    <button 
+                                    class="buttonClik"
+                                    type="submit">Zobacz</button>
                                 </form>
                             </div>
                         </div>
@@ -37,51 +25,68 @@
                             class="cardBooking__wrapper-card--img"
                             src="{% static 'img/aboutus.jpg' %}" alt="O wypożyczalni">
                     </div>
-                    
 
-
-
-                    <div class="cardBooking__wrapper-card reserved">
-                        <img 
-                        class="cardBooking__wrapper-card--img"
-                        src="{% static 'img/reservations.jpg' %}"  alt="Rezerwacja">
-                        <form action="{% url 'booking_list' %}" method="get">
-                            <button
-                            class="btnTest"
-                            type="submit"
-                            >
-                                Zobacz
-                            </button>
-                        </form>
-                        Rezerwacje</div>
-                    <div class="cardBooking__wrapper-card opinion">
-                        <img 
-                        class="cardBooking__wrapper-card--img"
-                        src="{% static 'img/opinion.jpg' %}"  alt="Opinie">
-                        Opinie
-                        <form action="{% url 'opinions' %}" method="get">
-                            <button
-                            class="btnTest"
-                            type="submit"
-                            >
-                                Zobacz
-                            </button>
-                        </form>
-                    </div>
-                    <div class="cardBooking__wrapper-card contact">
-                            <img 
-                            class="cardBooking__wrapper-card--img"
-                            src="{% static 'img/contact.jpg' %}"  alt="kontakt do wypożyczalni">
-                            <form action="{% url 'contacts' %}" method="get">
-                                <button
-                                class="btnTest"
-                                type="submit"
-                                >
-                                    Zobacz
-                                </button>
-                            </form>
-                            Kontakt
+                    <div class="cardBooking__wrapper-card about">
+                        <div class="cardBooking__wrapper-card--shadow">
+                            <div class="cardBooking__content">
+                                <h2>Rezerwacje</h2>
+                                <p>
+                                    Elastyczne warunki wynajmu – możesz wynająć samochód na kilka dni, tygodni, a nawet miesięcy. 
+                                    Mamy rozwiązanie dopasowane do Twoich potrzeb.
+                                </p>
+                                <form action="{% url 'booking_list' %}" method="get">
+                                    <button 
+                                    class="buttonClik"
+                                    type="submit">Zobacz</button>
+                                </form>
+                            </div>
                         </div>
+                        <img 
+                            class="cardBooking__wrapper-card--img"
+                            src="{% static 'img/reservations.jpg' %}" alt="O wypożyczalni">
+                    </div>
+
+                    <div class="cardBooking__wrapper-card about">
+                        <div class="cardBooking__wrapper-card--shadow">
+                            <div class="cardBooking__content">
+                                <h2>Opinie</h2>
+                                <p>
+                                    Zależy nam na pełnej satysfakcji naszych klientów, dlatego cenimy sobie każdą opinię. 
+                                    Oto, co mówią o nas osoby, które już skorzystały z naszych usług
+                                </p>
+                                <form action="{% url 'opinions' %}" method="get">
+                                    <button 
+                                    class="buttonClik"
+                                    type="submit">Zobacz</button>
+                                </form>
+                            </div>
+                        </div>
+                        <img 
+                            class="cardBooking__wrapper-card--img"
+                            src="{% static 'img/opinion.jpg' %}" alt="O wypożyczalni">
+                    </div>
+
+                    <div class="cardBooking__wrapper-card about">
+                        <div class="cardBooking__wrapper-card--shadow">
+                            <div class="cardBooking__content">
+                                <h2>Kontakt</h2>
+                                <p>
+                                    Jesteśmy do Twojej dyspozycji i chętnie odpowiemy na wszelkie pytania, 
+                                    pomożemy w rezerwacji pojazdu lub udzielimy niezbędnych informacji.
+                                </p>
+                                <form action="{% url 'contacts' %}" method="get">
+                                    <button 
+                                    class="buttonClik"
+                                    type="submit">Zobacz</button>
+                                </form>
+                            </div>
+                        </div>
+                        <img 
+                            class="cardBooking__wrapper-card--img"
+                            src="{% static 'img/contact.jpg' %}" alt="O wypożyczalni">
+                    </div>
+                    
+                
                 </div>   
                 
 
