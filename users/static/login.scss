@@ -2,6 +2,7 @@
 
 
 .loginUser {
+    position: relative;
     width: 100vw;
     height: 100vh;
     &__box {
@@ -9,7 +10,7 @@
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
-        &-wrapper {
+        &-wrapper, &-wrapperRegister {
             position: relative;
             width: 370px;
             height: 300px;
@@ -48,10 +49,25 @@
                 width: 300px;
             }
         }
-        &-wrapper:hover {
+        &-wrapperRegister {
+            background: linear-gradient(135deg, #007bff, #d1d1d1);
+        }
+        &-wrapper, &-wrapperRegister:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2), 0 10px 10px rgba(0, 0, 0, 0.15);
         }
+    }
+    &__alert, &__alertregister {
+        font-size: 1.2rem;
+        position: absolute;
+        left: 2%;
+        right: 4%;
+        bottom: 2%;
+        width: 80%;
+        height: 40px;
+    }
+    &__alertregister {
+        font-size: 1rem;
     }
 
 }
@@ -62,7 +78,7 @@
 @media (min-width: 576px) {
     .loginUser {
         &__box {
-            &-wrapper {
+            &-wrapper, &-wrapperRegister {
                 width: 470px;
                 height: 300px;
                 &--header {
@@ -86,7 +102,7 @@
 @media (min-width: 768px) {
     .loginUser {
         &__box {
-            &-wrapper {
+            &-wrapper, &-wrapperRegister {
                 width: 570px;
                 height: 300px;
                 &--header {
@@ -100,11 +116,34 @@
 
             }
         }
+        &__alert{
+            width: 20%;
+        }
+
+        &__alertregister{
+            width: 30%;
+        }
+    
+    }
+}
+
+@media (min-width: 992px) {
+    .loginUser {
+        &__alertregister{
+            width: 20%;
+            font-size: 1.2rem;
+        }
+    
     }
 }
 
 
+
 label {
     font-size: 1.5rem;
+    font-weight: 500;
+}
+
+span {
     font-weight: 500;
 }
