@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const opinionForm = document.getElementById('opinion-form'); // Formularz opinii
-    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value; // Pobieranie CSRF tokenu
-    const accessToken = localStorage.getItem('access'); // Pobieranie tokenu dostępu
+    const opinionForm = document.getElementById('opinion-form'); 
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value; 
+    const accessToken = localStorage.getItem('access'); 
 
-    // Sprawdzanie, czy użytkownik jest zalogowany (czy access token istnieje)
+    // Sprawdzanie, czy użytkownik jest zalogowany 
     if (!accessToken) {
         console.error("Brak tokenu dostępu. Użytkownik może nie być zalogowany.");
         Swal.fire({
@@ -20,48 +20,50 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 
-    // Obsługuje wysyłanie formularza opinii
+    // Formularz opini 
     opinionForm.addEventListener('submit', function(event) {
-        event.preventDefault(); // Zatrzymujemy normalne wysyłanie formularza
+        event.preventDefault(); 
+
+        // Ustawienie flagi zeby 2x nie wysyłać
+        if (opinionForm.dataset.submitted === 'true') {
+            return; 
+        }
+        opinionForm.dataset.submitted = 'true';
 
       
-        // Pobieranie wartości z formularza
-        const booking = document.querySelector('[name="booking"]').value; // Samochód (ID rezerwacji)
-        const rating = document.querySelector('[name="rating"]:checked').value; // Ocena (wartość wybranego radia)
-        const comment = document.querySelector('[name="comment"]').value; // Komentarz
 
-        // Tworzymy obiekt z danymi do wysłania
+        const booking = document.querySelector('[name="booking"]').value; 
+        const rating = document.querySelector('[name="rating"]:checked').value; 
+        const comment = document.querySelector('[name="comment"]').value; 
+
         const dataToSend = {
             booking: booking,
             rating: rating,
             comment: comment
         };
 
-        // Wyślij formularz za pomocą fetch
-        fetch(opinionForm.action, { // URL formularza
+        // Wysyłka
+        fetch(opinionForm.action, { 
             method: 'POST',
-            body: JSON.stringify(dataToSend), // Wysyłamy dane formularza w formacie JSON
+            body: JSON.stringify(dataToSend), 
             headers: {
-                'Content-Type': 'application/json', // Określamy, że wysyłamy dane w formacie JSON
-                'X-CSRFToken': csrfToken, // Dodajemy CSRF token w nagłówkach
-                'Authorization': `Bearer ${accessToken}` // Dodajemy access token w nagłówkach
+                'Content-Type': 'application/json', 
+                'X-CSRFToken': csrfToken, 
+                'Authorization': `Bearer ${accessToken}` 
             }
         })
-        .then(response => response.json())  // Oczekujemy odpowiedzi w formacie JSON
+        .then(response => response.json())  
         .then(data => {
-            // Obsługa odpowiedzi serwera
             if (data.success) {
-                // Jeśli wysłano opinię pomyślnie
                 Swal.fire({
                     title: 'Sukces!',
                     text: data.message,
                     icon: 'success',
                     confirmButtonText: 'OK'
                 }).then(() => {
-                    opinionForm.reset();  // Resetowanie formularza po dodaniu opinii
+                    opinionForm.reset();  
                 });
             } else {
-                // Jeśli wystąpił błąd
                 Swal.fire({
                     title: 'Błąd!',
                     text: data.message || 'Wystąpił błąd podczas dodawania opinii. Spróbuj ponownie.',
@@ -71,13 +73,16 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         })
         .catch(error => {
-            // Obsługuje błąd połączenia
             Swal.fire({
                 title: 'Błąd!',
                 text: 'Wystąpił problem z połączeniem. Spróbuj ponownie.',
                 icon: 'error',
                 confirmButtonText: 'OK'
             });
+        })
+        .finally(() => {
+            // Przywracam flagę
+            opinionForm.dataset.submitted = 'false'; 
         });
     });
 });
