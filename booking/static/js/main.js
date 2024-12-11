@@ -1,5 +1,36 @@
-
 const reservationButtons = document.querySelectorAll('.btnReservation');
+const resert_filter = document.querySelector('.reset_filter')
+
+// Resetowanie filtra:
+const resetAllCar= () => {
+    console.log("Reset")
+    window.location.href = window.location.pathname;
+}
+
+resert_filter.addEventListener("click", resetAllCar)
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+
+    const formattedDate = `${year}-${month}-${day}`;
+
+    // Jeżeli puste ustawiam na dzisiejszą datę
+    document.querySelectorAll('[id^="start_date_reservation"]').forEach(function(input) {
+        if (!input.value) {
+            input.value = formattedDate;
+        }
+    });
+    document.querySelectorAll('[id^="end_date_reservation"]').forEach(function(input) {
+        if (!input.value) {
+            input.value = formattedDate;
+        }
+    });
+});
+
 
 reservationButtons.forEach(function(button) {
     button.addEventListener('click', function (e) {
@@ -8,8 +39,11 @@ reservationButtons.forEach(function(button) {
         console.log("Kliknięty przycisk z booking_id: ", bookingId); 
         const accessToken = localStorage.getItem('access');
         const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-        const start_date = document.querySelector('#start_date').value
-        const end_date = document.querySelector('#end_date').value
+        const start_date = document.querySelector(`#start_date_reservation_${bookingId}`).value;
+        const end_date = document.querySelector(`#end_date_reservation_${bookingId}`).value;
+
+        console.log("Start date:", start_date);
+        console.log("End date:", end_date);
 
         console.log(accessToken)
         if (!accessToken) {
@@ -17,6 +51,16 @@ reservationButtons.forEach(function(button) {
             Swal.fire(
                 'Błąd',
                 'Musisz być zalogowany, aby zarezerwować.',
+                'error'
+            );
+            return;  
+        }
+
+        if (!start_date || !end_date) {
+            console.error("Start date i end date są puste");
+            Swal.fire(
+                'Błąd',
+                'Proszę wybrać daty rozpoczęcia i zakończenia.',
                 'error'
             );
             return;  
