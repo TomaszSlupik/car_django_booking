@@ -8,6 +8,8 @@ from django.http import HttpResponse
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.permissions import AllowAny
+from django.contrib.auth.models import User
+from django.contrib import messages  
 
 
 
@@ -27,8 +29,12 @@ class LoginView(APIView):
 
             return Response({
                 "refresh": str(refresh),
-                "access": str(refresh.access_token)
+                "access": str(refresh.access_token),
+                "username": user.username 
             }, status=status.HTTP_200_OK)
+        
+        
+        return Response({"error": "Niepoprawna nazwa użytkownika lub hasło."}, status=status.HTTP_400_BAD_REQUEST)
 
 
 def error_login_view(request):
@@ -47,6 +53,14 @@ class RegisterView(APIView):
     def post(self, request):
         serializer = RegisterSerializer(data=request.data)
         if serializer.is_valid():
+
+            username = serializer.validated_data.get("username")
+            if User.objects.filter(username=username).exists():
+                 return render(request, "register.html", {"error": "Użytkownik już istnieje w bazie danych."})
+            
             serializer.save()
-            return redirect("login")
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            success_msg = "Zarejestrowałeś się pomyślnie!"
+            messages.success(request, success_msg)
+            return render(request, "register.html") 
+
+        return render(request, "register.html", {"error": "Wystąpił błąd podczas rejestracji.", "form_errors": serializer.errors})
