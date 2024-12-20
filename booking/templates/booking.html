@@ -12,9 +12,24 @@
         <div class="sticky-header text-center">
             <h1>Rezerwacja Samochodu</h1>
         </div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+            <div class="container-fluid">
+                <form class="d-flex" method="get" action="{% url 'booking_list' %}">
+                    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+                    <input type="text" name="car_name" class="form-control me-2" placeholder="Nazwa samochodu" aria-label="Car Name">
+                    <select name="is_booked" class="form-select me-2" aria-label="Booking Status">
+                        <option value="">Wybierz status rezerwacji</option>
+                        <option value="true">Zarezerwowane</option>
+                        <option value="false">Dostępne</option>
+                    </select>
+                    <button class="btn btn-outline-success" type="submit">Filtruj</button>
+                    <button type="button" class="btn btn-outline-secondary ms-2 reset_filter">Wyczyść</button>
+                </form>
+            </div>
+        </nav>
+
         <form action="{% url 'main' %}" method="get">
             <button
-            class="btnTest"
             type="submit"
             >
                 Powrót
