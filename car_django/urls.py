@@ -16,8 +16,28 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from users.views import (
+    LoginView,
+    RegisterView,
+    error_login_view,
+    come_back_to_main_page, 
+)
+
+
+from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-]
+    path("", LoginView.as_view(), name="login"),
+    path("error_login", error_login_view, name="error_login"),
+    path("", come_back_to_main_page, name="login"),
+    path("register", RegisterView.as_view(), name="register"),
+    path("main/", include("main.urls")),
+    path("main/booking/", include("booking.urls")),
+    path("main/opinion/", include("opinion.urls")),
+    path("main/contact/", include("contact.urls")),
+    path("main/aboutus/", include("aboutus.urls"))
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
