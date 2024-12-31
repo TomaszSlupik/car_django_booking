@@ -9,18 +9,17 @@
 {% block content %}
     <div>
         <form action="{% url 'main' %}" method="get">
-            <button
-            class="btnTest"
-            type="submit"
-            >
-                Powrót
-            </button>
+            <div style="--clr: gold;">
+                <button type="submit">
+                    Powrót
+                </button>
+            </div>
+           
         </form>
-      Opinie
-
+        <h1>Opinie</h1>
       
-      <div class="container mt-5">
-        <h2>Dodaj opinię</h2>
+      <div class="container mt-5 addOpinion">
+        <h3>Dodaj opinię</h3>
         
         <form id="opinion-form" method="POST" action="{% url 'add_opinion' %}">
             {% csrf_token %}
