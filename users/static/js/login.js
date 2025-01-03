@@ -16,6 +16,7 @@ async function checkLoginUser(e) {
             const tokens = await res.json(); 
             localStorage.setItem('refresh', tokens.refresh);
             localStorage.setItem('access', tokens.access);
+            localStorage.setItem('username', tokens.username); 
             window.location.href = '/main/';
         } else {
             const error = await res.json();
