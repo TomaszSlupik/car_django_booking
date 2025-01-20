@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     "aboutus",
     "rest_framework",
     "rest_framework_simplejwt",
-    "django_libsass",
+    "django_libsass"
 ]
 
 
@@ -143,6 +143,7 @@ STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "users/static"),
+    os.path.join(BASE_DIR, "car_django/static"),  
 ]
 
 COMPRESS_PRECOMPILERS = (("text/x-scss", "django_libsass.SassCompiler"),)

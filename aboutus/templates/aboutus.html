@@ -8,6 +8,16 @@
 
 {% block content %}
 <div class="aboutus">
+    <form action="{% url 'main' %}" method="get">
+        <div style="--clr: gold;">
+            <button type="submit">
+                Powrót
+            </button>
+        </div>
+       
+    </form>
+
+
     <h1>O Nas</h1>
     <div class="aboutus__box">
         <div class="aboutus__box-wrapper">
@@ -76,5 +86,10 @@
 
     </div>
 </div>
+
+{% block extra_js %}
+<script type="module" src="{% static 'js/aboutus.js' %}"></script> 
+{% endblock %}
+
 
 {% endblock %}
