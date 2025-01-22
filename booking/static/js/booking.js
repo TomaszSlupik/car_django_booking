@@ -1,6 +1,7 @@
 const reservationButtons = document.querySelectorAll('.btnReservation');
 const resert_filter = document.querySelector('.reset_filter')
 
+
 // Resetowanie filtra:
 const resetAllCar= () => {
     console.log("Reset")
@@ -42,6 +43,7 @@ reservationButtons.forEach(function(button) {
         const start_date = document.querySelector(`#start_date_reservation_${bookingId}`).value;
         const end_date = document.querySelector(`#end_date_reservation_${bookingId}`).value;
 
+        const username = localStorage.getItem('username'); 
         console.log("Start date:", start_date);
         console.log("End date:", end_date);
 
@@ -87,7 +89,8 @@ reservationButtons.forEach(function(button) {
                     body: JSON.stringify({
                         booking_id: bookingId,
                         start_date: start_date,
-                        end_date: end_date
+                        end_date: end_date, 
+                        username: username
                     })
                 }).then(response => response.json())  
                 .then(data => {
