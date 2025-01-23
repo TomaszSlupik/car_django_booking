@@ -90,6 +90,17 @@ button:hover {
     }
 }
 
+.globalCard {
+    color: gold;
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s, color 0.3s;
+}
+.globalCard:hover {
+    transform: translateY(-10px); 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); 
+    background-color: rgba(0, 0, 0, 0.3); 
+    color: white; 
+}
+
 @media (min-width: 900px) {
     .cardBooking {
         position: relative;

@@ -96,6 +96,46 @@ a:hover, button:hover {
                 10px 10px 5px rgba(0, 0, 0, 0.25);
 }
 
+.globalCard {
+    width: 350px;
+    height: 350px;
+    margin-top: 1em;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    box-shadow: inset 20px 20px 20px rgba(0, 0, 0, 0.05),
+                25px 35px 20px rgba(0, 0, 0, 0.05),
+                25px 20px 20px rgba(0, 0, 0, 0.05),
+                inset 25px 30px 30px rgba(255, 255, 255, 0.9);
+    animation: slide 3s linear;
+
+    &::before {
+        content: '';
+        position: absolute;
+        width: 35px;
+        height: 35px;
+        background-color: #ffffffc8;
+        top: 50px;
+        left: 80px;
+        border-radius: 50%;
+        opacity: 0.8;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        background-color: #ffffffc8;
+        top: 90px;
+        left: 110px;
+        border-radius: 50%;
+        opacity: 0.8;
+    }
+}
+
 
 @media only screen and (min-width: 576px)  {
     h1 {
