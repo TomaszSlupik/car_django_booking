@@ -16,7 +16,6 @@ def booking_view (request):
     return render(request, "booking.html")
 
 class BookingListView(ListView):
-    # permission_classes = [IsAuthenticated] 
     model = Booking
     template_name = 'booking.html'
     context_object_name = 'bookings' 
@@ -28,7 +27,9 @@ class BookingListView(ListView):
         is_booked = self.request.GET.get('is_booked', None)
 
         if car_name:
-            queryset  = queryset.filter(name_car_booking=car_name)
+            # ignoruję wielkie liter
+            queryset = queryset.filter(name_car_booking__icontains=car_name)
+            print(car_name)
         if is_booked is not None:
             is_booked = is_booked.lower() == 'true' 
             queryset = queryset.filter(is_booked=is_booked)

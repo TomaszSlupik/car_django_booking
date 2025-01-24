@@ -72,12 +72,27 @@
             <span class="circle one"></span>
             <span class="circle two"></span>
 
-            <form action="" method="post" autocomplete="off">
+            <form action="" method="post" autocomplete="off" class="needs-validation" novalidate>
                 {% csrf_token %}
                 <h3 class="title">Napisz do nas</h3>
                 <div class="input-container">
-                    <input type="text" name="name" class="input" required />
-                    <label for="">Imię i Nazwisko</label>
+                    <label 
+                    class="form-label"
+                    for="validationCustom01">Imię i Nazwisko</label>
+
+                    <input 
+                    class="form-control"
+                    id="validationCustom01" 
+                    required
+                    label="Wpisz imię i nazwisko"
+                    type="text" name="name" class="input" required />
+
+                    <div class="valid-feedback">
+                        Dane poprawne!
+                    </div>
+                    <div class="invalid-feedback">
+                        Musisz wprowadzić imię i nazwisko
+                    </div>
                 </div>
                 <div class="input-container">
                     <input type="email" name="email" class="input" required />
