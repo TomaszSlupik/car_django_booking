@@ -36,8 +36,11 @@
     </div>
     {% endfor %}
     {% endif %}
-
+    <img 
+    style="width: 100vw; height: 100vh; background-color: black;"
+    src="{% static 'img/bg.jpg' %}"  alt="Wypożyczalnia samochodów - podgląd samochodów">
     <div class="loginUser__box">
+        
         <div class="loginUser__box-wrapperRegister">
             <div class="loginUser__box-wrapperRegister--header">
                 <h2 class="loginUser__box-wrapperRegister--header---login text-center">Zarejestruj się</h2>
@@ -66,8 +69,7 @@
                     </div>
 
                     <button 
-                    class="btn 
-                        btn-warning btn-block"
+                    style="background-color: #FF5722;"
                     type="submit">Zarejestruj się</button>
                 </form>
             </div>

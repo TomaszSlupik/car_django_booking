@@ -6,15 +6,29 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
-    <div class="back-button">
+
+<div class="car-container">
+    <div class="btnBack">
         <form action="{% url 'main' %}" method="get">
             <div style="--clr: gold;">
             <button type="submit">Powrót</button>
             </div>
         </form>
     </div>
+    <img 
+    style="width: 100%; height: 100%;"
+    class="car-image" src="{% static 'img/audi.jpg' %}" alt="Audi">
+        
 
+
+
+</div>
+<div class="container">
+
+
+
+
+    
     <span class="big-circle"></span>
     <img src="{% static 'img/shape.png' %}" class="square" alt="" />
     

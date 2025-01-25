@@ -7,15 +7,36 @@ textarea {
     font-family: "Poppins", sans-serif;
 }
 
+.car-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    margin-top: -70px
+}
+
+.btnBack {
+    position: absolute;
+    top: 2%;
+    left: 2%;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.car-image {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    z-index: -10;
+    width: 100%; 
+    animation: blinkBrightness 2s infinite; 
+    border-radius: 10px; 
+}
+
 .container {
     position: relative;
     width: 100vw;
     height: calc(100vh - 70px);
     padding: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
 }
 
 
@@ -156,4 +177,19 @@ textarea {
 .textarea {
     min-height: 150px; 
     resize: none; 
+}
+
+
+
+
+@keyframes blinkBrightness {
+    0% {
+        filter: brightness(1); /* Normalna jasność */
+    }
+    50% {
+        filter: brightness(1.5); /* Zwiększona jasność, efekt światła */
+    }
+    100% {
+        filter: brightness(1); /* Normalna jasność */
+    }
 }

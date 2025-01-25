@@ -21,8 +21,10 @@
         <div class="header__btn">
             <form action="{% url 'login' %}" method="get">
                 <button
-                class="btn btn-primary"
                 type="submit"
+                onmouseover="this.style.color = '#fff';" 
+                onmouseout="this.style.color = '#fff';" 
+                style="background-color: black;"
                 onclick="clearLocalStorage();"> 
                     Wyloguj
                 </button>

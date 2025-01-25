@@ -49,9 +49,7 @@
                 width: 300px;
             }
         }
-        &-wrapperRegister {
-            background: linear-gradient(135deg, #007bff, #d1d1d1);
-        }
+
         &-wrapper, &-wrapperRegister:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2), 0 10px 10px rgba(0, 0, 0, 0.15);
@@ -78,9 +76,9 @@
 @media (min-width: 576px) {
     .loginUser {
         &__box {
-            &-wrapper, &-wrapperRegister {
+            &-wrapper , &-wrapperRegister {
                 width: 470px;
-                height: 300px;
+                height: 320px;
                 &--header {
                     &---login {
                         font-size: 2.2rem; 
@@ -91,7 +89,7 @@
                 }
                 input {
                     padding: 14px; 
-                    font-size: 1.1rem; 
+                    font-size: 1.8rem; 
                 }
             }
         }
@@ -104,7 +102,7 @@
         &__box {
             &-wrapper, &-wrapperRegister {
                 width: 570px;
-                height: 300px;
+                height: 360px;
                 &--header {
                     &---login {
                         font-size: 2.5rem; 

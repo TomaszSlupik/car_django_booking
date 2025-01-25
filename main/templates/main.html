@@ -1,12 +1,14 @@
 {% extends 'index.html' %}
 {% load static %}
 {% block content %}
+
     <div class="main">
+
         <main>
+    <main>
             <section class="cardBooking">
-                <div class="cardBooking__wrapper">
-                    
-                    <div class="cardBooking__wrapper about globalCard"
+                <section class="cardBooking__wrapper">
+                    <div class="cardBooking__wrapper-card about"
                     style="width: 100%;"
                     >
                         <div class="cardBooking__wrapper-card--shadow">
@@ -28,7 +30,7 @@
                             src="{% static 'img/aboutus.jpg' %}" alt="O wypożyczalni">
                     </div>
 
-                    <div class="cardBooking__wrapper about globalCard"
+                    <div class="cardBooking__wrapper-card about"
                     style="width: 100%;"
                     >
                         <div class="cardBooking__wrapper-card--shadow">
@@ -90,8 +92,10 @@
                             src="{% static 'img/contact.jpg' %}" alt="O wypożyczalni">
                     </div>
                     
-                
-                </div>   
+                </section>
+            </section>  
+        </main>
+    </div>   
            
            
 {% block extra_js %}
