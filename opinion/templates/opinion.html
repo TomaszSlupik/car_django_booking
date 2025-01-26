@@ -43,14 +43,25 @@
                 <label 
                 style="color: #FF5722; font-size: 1.8rem;"
                 for="id_rating">Wybierz ocenę</label>
-                {{ form.rating }}
+                <div
+                style="position: relative;
+                height: 118px;
+                color: #FF5722;
+                margin-left: 3em;
+                "
+                >
+                    {{ form.rating }}
+                </div>
+                
             </div>
             
-            <div class="mb-3">
+            <div class="mb-3"
+            >
                 <label 
                  style="color: #FF5722; font-size: 1.8rem;"
                 for="id_comment">Twój komentarz</label>
-                {{ form.comment }}
+                    {{ form.comment }}
+               
             </div>
             
             <button 

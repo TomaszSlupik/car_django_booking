@@ -158,7 +158,7 @@
 .car-image {
     position: absolute;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     z-index: -10;
     margin-top: -70px;
 }
@@ -255,6 +255,10 @@
 //     left: 2%;
 // }
 
+textarea {
+    min-height: 100px;
+    max-height: 200px;
+}
 
 .rating {
     display: flex;
