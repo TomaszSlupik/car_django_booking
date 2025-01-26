@@ -29,11 +29,9 @@
         </nav>
 
         <form action="{% url 'main' %}" method="get">
-            <button
-            type="submit"
-            >
-                Powrót
-            </button>
+            <div style="--clr: #FF5722;">
+                <button type="submit">Powrót</button>
+            </div>
         </form>
         <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-3  g-4">
@@ -83,12 +81,13 @@
                             {% if booking.is_booked %}
                             <button 
                             disabled
-                            class="btn btn-warning">
+                            style="background-color: #FF5722;">
                                 Rezerwuj
                             </button>
                             {% else %}
                             <button 
-                            class="btn btn-warning btnReservation" data-booking-id="{{ booking.id }}">
+                             style="background-color: #FF5722;"
+                            class="btnReservation" data-booking-id="{{ booking.id }}">
                                 Rezerwuj
                             </button>
                             {% endif %}

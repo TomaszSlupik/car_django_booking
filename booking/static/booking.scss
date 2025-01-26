@@ -18,7 +18,7 @@
             width: 15px;  
         }
         &::-webkit-scrollbar-thumb {
-            background: #007bff;
+            background: #FF5722;
             border-radius: 10px;  
         }
         &-card {
@@ -58,7 +58,7 @@
 
 .booking__wrapper-card--date {
     position: relative;
-    margin-bottom: 4em;
+    margin-bottom: 6em;
     background-color: #f8f9fa; 
     border-radius: 10px;
     padding: 20px; 
@@ -101,4 +101,9 @@
 .sticky-header h1 {
     margin: 0;
     font-size: 2rem;
+}
+
+.card {
+    border-radius: 10px;
+    overflow: hidden;
 }
