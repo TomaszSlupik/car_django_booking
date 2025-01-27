@@ -107,3 +107,98 @@
     border-radius: 10px;
     overflow: hidden;
 }
+
+.form-booking {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.form-booking-search {
+    width: 100%;
+}
+
+.form-booking-btn {
+    margin-top: 1em;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-filter, .btn-reset {
+    margin-top: 0.4em;
+    margin-bottom: 0.4em;
+    background-color: #4CAF50;
+}
+
+.btn-reset {
+    background-color: #3F3F3F ;
+    color: #fff;
+}
+
+.select-reservation {
+    width: 100%;
+    padding: 0.8em 1.2em;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    transition: border-color 0.3s ease;
+}
+
+
+.select-reservation:focus {
+    border-color: #FF5722; 
+    outline: none;
+    box-shadow: 0 0 5px rgba(255, 87, 34, 0.5);
+}
+
+.form-booking-search input[type="text"] {
+    width: 100%;
+    padding: 0.75em 1em;
+    font-size: 1rem;
+    border: 2px solid #ccc; 
+    border-radius: 8px;
+    background-color: #fff;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+.form-booking-search input[type="text"]:focus {
+    border-color: #FF5722; 
+    outline: none; 
+    box-shadow: 0 0 5px rgba(255, 87, 34, 0.5); 
+}
+
+
+@media (max-width: 576px) {
+    .form-group {
+        margin-bottom: 1.2em; 
+    }
+
+    .select-reservation {
+        font-size: 1rem; 
+    }
+}
+
+
+@media (min-width: 577px) {
+    .select-reservation {
+        font-size: 1.1rem; 
+        max-width: 400px; 
+    }
+    .form-booking-btn  {
+        margin-top: 1em;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    .btn-filter, .btn-reset {
+        margin: 0em 0.4em;
+    }
+}
+
