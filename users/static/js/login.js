@@ -15,6 +15,23 @@
   })()
 
 
+  const exampleModal = document.getElementById('exampleModal');
+  const svgIcon = document.querySelector('.bi-info-circle-fill'); // SVG, który uruchamia modal
+  const acceptButton = document.getElementById('acceptButton');
+
+  if (exampleModal) {
+    svgIcon.addEventListener('click', () => {
+
+      const modal = new bootstrap.Modal(exampleModal);
+      modal.show();
+    });
+
+    acceptButton.addEventListener('click', () => {
+      const modal = bootstrap.Modal.getInstance(exampleModal);
+      modal.hide(); 
+    });
+
+  }
 
 async function checkLoginUser(e) {
     e.preventDefault();

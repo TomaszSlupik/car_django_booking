@@ -44,14 +44,23 @@
         <div class="loginUser__box-wrapperRegister">
             <div class="loginUser__box-wrapperRegister--header">
                 <h2 class="loginUser__box-wrapperRegister--header---login text-center">Zarejestruj się</h2>
-                <form method="POST">
+                <form method="POST"
+                autocomplete="off" 
+                class="needs-validation contact-form" novalidate
+                >
                     {% csrf_token %}
 
                     <div class="form-group">
                         <label for="username">Login:</label>
                         <input 
                         class="form-control loginUser__box-wrapperRegister--label input"
-                        type="text" id="username" name="username" required>   
+                        type="text" id="username" name="username" required> 
+                        <div class="valid-feedback check-txt">
+                            Dane poprawne!
+                        </div>
+                        <div class="invalid-feedback check-txt">
+                            Musisz wprowadzić swoją nazwę użytkownika!
+                        </div>  
                     </div>
        
                     <div class="form-group">
@@ -59,6 +68,12 @@
                         <input 
                         class="form-control"
                         type="email" id="email" name="email" required>
+                        <div class="valid-feedback check-txt">
+                            Dane poprawne!
+                        </div>
+                        <div class="invalid-feedback check-txt">
+                            Musisz wprowadzić swój e-mail!
+                        </div>  
                     </div>
 
                     <div class="form-group">
@@ -66,6 +81,12 @@
                         <input 
                         class="form-control"
                         type="password" id="password" name="password" required>   
+                        <div class="valid-feedback check-txt">
+                            Dane poprawne!
+                        </div>
+                        <div class="invalid-feedback check-txt">
+                            Musisz wprowadzić hasło!
+                        </div> 
                     </div>
 
                     <button 
