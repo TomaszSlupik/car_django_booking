@@ -10,6 +10,7 @@ from django.views import View
 from django.http import JsonResponse
 from datetime import datetime
 import json
+from django.template.loader import render_to_string
 
 # Create your views here.
 def booking_view (request):
@@ -22,14 +23,12 @@ class BookingListView(ListView):
 
     def get_queryset(self):
         queryset  = Booking.objects.all()
-
-        car_name = self.request.GET.get('car_name', "")
         is_booked = self.request.GET.get('is_booked', None)
+        car_name = self.request.GET.get('car_name', '').strip()
 
         if car_name:
-            # ignoruję wielkie liter
             queryset = queryset.filter(name_car_booking__icontains=car_name)
-            print(car_name)
+
         if is_booked is not None:
             is_booked = is_booked.lower() == 'true' 
             queryset = queryset.filter(is_booked=is_booked)
@@ -39,7 +38,26 @@ class BookingListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
+    
 
+class BookingSearchView(ListView):
+    model = Booking
+    template_name = 'booking.html'
+    context_object_name = 'bookings'
+
+    def get_queryset(self):
+        queryset = Booking.objects.all()
+
+        # Filtrowanie po nazwie samochodu
+        car_name = self.request.GET.get('car_name', '').strip()
+        if car_name:
+            queryset = queryset.filter(name_car_booking__icontains=car_name)
+
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
 
 class BookingView(View):
     def post(self, request, **kwargs):

@@ -1,10 +1,10 @@
-const alert = document.getElementById("register-error")
+const alertRegister = document.getElementById("register-error")
 const success = document.getElementById("register-success")
 
 document.addEventListener("DOMContentLoaded", function() {
-    if (alert) {
+    if (alertRegister) {
         setTimeout(() => {
-            alert.style.display = 'none'
+            alertRegister.style.display = 'none'
         }, 3000)
     }
 })

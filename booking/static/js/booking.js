@@ -122,3 +122,20 @@ reservationButtons.forEach(function(button) {
         });
     });
 });
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const carNameInput = document.getElementById('car_name_input');
+
+    carNameInput.addEventListener('input', function() {
+        const carName = carNameInput.value.trim();
+
+        const url = new URL(window.location.href);
+        
+        // Dodaje car_name do url lub usuwam
+        if (carName) {
+            url.searchParams.set('car_name', carName);  
+            url.searchParams.delete('car_name');  
+        }
+    });
+});

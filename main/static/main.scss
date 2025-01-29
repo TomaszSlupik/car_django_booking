@@ -4,8 +4,6 @@
     position: relative;
     width: 100vw;
     height: 100vh;
-    background: url("{% static 'img/bg.jpg' %}") no-repeat center center;
-    background-size: cover; /* Tło wypełnia całą stronę */
 }
 
 header, .header {

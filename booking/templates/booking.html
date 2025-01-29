@@ -16,17 +16,35 @@
             <div 
             style="width: 100vw;
             position: relative;
+            display: flex;
+            flex-direction: column;
             "
             class="container-fluid">
+                <form
+                style="width: 100%;"
+                class="d-flex"
+                method="get" action="{% url 'booking_search' %}"
+                >
+                    <div class="form-booking-search">
+                        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+                        <input 
+                        id="car_name_input" 
+                        type="text" 
+                        name="car_name" 
+                        class="form-control me-2" 
+                        placeholder="Nazwa samochodu"
+                        value="{{ request.GET.car_name|default:'' }}"
+                    >
+                    </div>
+                    <button 
+                    style="background-color: #FF5722;"
+                    type="submit">Wyszukaj</button>
+                </form>
                 <form 
                 style="width: 100%;"
                 class="d-flex" method="get" action="{% url 'booking_list' %}">
                     <div class="form-booking">
-                        <div class="form-booking-search">
-                            <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
-                            <input type="text" name="car_name" class="form-control me-2" placeholder="Nazwa samochodu" aria-label="Car Name">    
-                        </div>
-                        
+
                         <div class="form-booking-btn">
                             <select name="is_booked" class="select-reservation form-select me-2" aria-label="Booking Status">
                                 <option value="">Wybierz status rezerwacji</option>
@@ -51,7 +69,7 @@
             </div>
         </form>
         <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-3  g-4">
+        <div class="results-container row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-3  g-4">
             {% for booking in bookings %}
                 <div class="col booking__wrapper-card">
                     <div class="card {% if booking.is_booked %} booked {% endif %}"> 
@@ -122,5 +140,3 @@
 
 
   {% endblock %}
-
-
