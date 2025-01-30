@@ -1,6 +1,9 @@
+import json
 from django.test import TestCase
 from booking.models import Booking
 from django.urls import reverse
+from django.contrib.auth.models import User
+from datetime import datetime
 
 
 class BookingListViewTest (TestCase):
@@ -88,3 +91,36 @@ class BookingSearchViewTest (TestCase):
         self.assertEqual(len(bookings), 0)
 
 
+class BookingViewTest(TestCase):
+
+    def setUp(self):
+
+        self.user = User.objects.create(username='testowy_uzytkownik', password='test123')
+        self.booking = Booking.objects.create(name_car_booking='Peugeot')
+
+        self.url = reverse('booking') 
+
+    def test_booking_success(self):
+
+        data = {
+            'booking_id': self.booking.id,
+            'start_date': '2025-02-01',
+            'end_date': '2025-02-28',
+            'username': self.user.username
+        }
+
+        # POST z danymi
+        res = self.client.post(self.url, json.dumps(data), content_type='application/json')
+
+
+        self.assertEqual(res.status_code, 200)
+        
+        res_data = json.loads(res.content)
+        self.assertEqual(res_data['status'], 'success')
+
+        # czy rezerwacja została poprawnie zarezerwowana 
+        self.booking.refresh_from_db()  
+        self.assertTrue(self.booking.is_booked)
+        self.assertEqual(self.booking.start_date, datetime.strptime('2025-02-01', '%Y-%m-%d').date())
+        self.assertEqual(self.booking.end_date, datetime.strptime('2025-02-28', '%Y-%m-%d').date())
+        self.assertEqual(self.booking.user, self.user)  
