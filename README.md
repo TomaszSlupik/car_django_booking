@@ -20,3 +20,5 @@ sass --watch car_django/static/index.scss:car_django/static/index.css --load-pat
 sass --watch contact/static/contact.scss:contact/static/contact.css --load-path=car_django/static
 sass --watch aboutus/static/aboutus.scss:aboutus/static/aboutus.css --load-path=car_django/static
 sass --watch opinion/static/opinion.scss:opinion/static/opinion.css --load-path=car_django/static
+
+# $ python manage.py test booking.test.test_booking
