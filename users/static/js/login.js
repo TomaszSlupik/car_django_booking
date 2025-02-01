@@ -15,23 +15,33 @@
   })()
 
 
-  const exampleModal = document.getElementById('exampleModal');
-  const svgIcon = document.querySelector('.bi-info-circle-fill'); // SVG, który uruchamia modal
-  const acceptButton = document.getElementById('acceptButton');
+const exampleModal = document.getElementById('exampleModal');
+const svgIcon = document.querySelector('.bi-info-circle-fill'); // SVG, który uruchamia modal
+const acceptButton = document.querySelector('.acceptButton');
 
-  if (exampleModal) {
-    svgIcon.addEventListener('click', () => {
 
-      const modal = new bootstrap.Modal(exampleModal);
-      modal.show();
-    });
+if (exampleModal) {
+  svgIcon.addEventListener('click', () => {
+    const modal = new bootstrap.Modal(exampleModal);
+    modal.show();
+  });
+}
 
-    acceptButton.addEventListener('click', () => {
-      const modal = bootstrap.Modal.getInstance(exampleModal);
-      modal.hide(); 
-    });
+// Dodałem do usuwania z DOM wszytskich klas modal-backdrop
+function removeModalBackdrops() {
+  const backdrops = document.querySelectorAll('.modal-backdrop');
+  backdrops.forEach(backdrop => {
+    backdrop.remove(); 
+  });
+}
 
-  }
+acceptButton.addEventListener('click', () => {
+  const modal = bootstrap.Modal.getInstance(document.getElementById('exampleModal'));
+  modal.hide(); 
+  removeModalBackdrops();
+});
+
+
 
 async function checkLoginUser(e) {
     e.preventDefault();
