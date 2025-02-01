@@ -1,0 +1,28 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'booking.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<div class="user">
+    <form action="{% url 'main' %}" method="get">
+        <div style="--clr: #FF5722;">
+            <button type="submit">
+                Powrót
+            </button>
+        </div>
+       
+    </form>
+
+
+</div>
+
+{% block extra_js %}
+<script src="{% static 'js/booking.js' %}"></script> 
+{% endblock %}
+
+
+{% endblock %}

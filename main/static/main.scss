@@ -14,10 +14,18 @@ header, .header {
     justify-content: center;
     align-items: center;
     &__btn {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
         position: absolute;
-        right: 2%;
+        right: 4%;
     }
 }
+
+.header__btn img {
+    margin-right: 10px; 
+}
+
 
 p {
     color: #FF5722;

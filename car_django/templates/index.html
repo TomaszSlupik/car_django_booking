@@ -15,11 +15,22 @@
 </head>
 <body>
 
-
-
     {% if request.path != '/' and request.path != '/register' %}
     <header>
         <div class="header__btn">
+            <a 
+            style="max-width: 40px; max-height: 40px; 
+            min-width: 40px; min-height: 40px;
+            position: relative;"
+            href="{% url 'user' %}" >
+                <img 
+                    src="{% static 'svg/user.svg' %}" 
+                    alt="Użytkownik" 
+                    style="cursor: pointer; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" 
+                    role="button" 
+                    aria-label="User profile">
+            </a>
+        
             <form action="{% url 'login' %}" method="get">
                 <button
                 type="submit"

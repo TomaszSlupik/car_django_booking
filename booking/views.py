@@ -16,6 +16,9 @@ from django.template.loader import render_to_string
 def booking_view (request):
     return render(request, "booking.html")
 
+def booking_user_view (request):
+    return render(request, "user.html")
+
 class BookingListView(ListView):
     model = Booking
     template_name = 'booking.html'
