@@ -19,10 +19,12 @@
     <header>
         <div class="header__btn">
             <a 
+            id="username"
             style="max-width: 40px; max-height: 40px; 
             min-width: 40px; min-height: 40px;
             position: relative;"
-            href="{% url 'user' %}" >
+            href="{% url 'booking_user_view' %}" 
+            >
                 <img 
                     src="{% static 'svg/user.svg' %}" 
                     alt="Użytkownik" 
@@ -31,7 +33,8 @@
                     aria-label="User profile">
             </a>
         
-            <form action="{% url 'login' %}" method="get">
+            <form 
+            action="{% url 'login' %}" method="get">
                 <button
                 type="submit"
                 onmouseover="this.style.color = '#fff';" 

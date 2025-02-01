@@ -11,13 +11,35 @@ from django.http import JsonResponse
 from datetime import datetime
 import json
 from django.template.loader import render_to_string
+from django.http import Http404
 
 # Create your views here.
 def booking_view (request):
     return render(request, "booking.html")
 
-def booking_user_view (request):
-    return render(request, "user.html")
+class BookingUserListView(ListView):
+    model = Booking
+    template_name = 'user.html'
+    context_object_name = 'users_booking'
+
+    def get_queryset(self):
+
+        username = self.request.GET.get('username')   
+        if username:
+            try:
+                user = User.objects.get(username=username)
+                return Booking.objects.filter(user=user)
+            
+            except User.DoesNotExist:
+                raise Http404("Użytkownik o takim username nie istnieje")
+        else:
+            raise Http404("Nie podano username")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['username'] = self.request.GET.get('username')  
+        return context
+
 
 class BookingListView(ListView):
     model = Booking

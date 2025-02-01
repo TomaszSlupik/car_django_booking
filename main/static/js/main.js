@@ -21,3 +21,22 @@ document.addEventListener('DOMContentLoaded', function() {
         return;  
     }
 })
+
+
+// Rezerwacje użytkowników
+document.addEventListener('DOMContentLoaded', function () {
+    let username = localStorage.getItem('username');  
+    console.log(username);
+
+    if (username) {
+
+        let usernameLink = document.getElementById('username');
+        
+        usernameLink.addEventListener('click', function(event) {
+            event.preventDefault();  
+            window.location.href = `/main/booking/user/?username=${username}`;
+        });
+    } else {
+        document.getElementById('user-rezerwacje').innerHTML = "<p>Nie znaleziono użytkownika w localStorage.</p>";
+    }
+});
