@@ -1,34 +1,90 @@
-{% extends 'index.html' %}
-{% load static %}
-
-{% block extra_css %}
-    <link rel="stylesheet" href="{% static 'booking.css' %}">
-{% endblock %}
-
-
-{% block content %}
+{% extends 'index.html' %} {% load static %} {% block extra_css %}
+<link rel="stylesheet" href="{% static 'booking.css' %}" />
+{% endblock %} {% block content %}
 <div class="user">
-    <form action="{% url 'main' %}" method="get">
-        <div style="--clr: #FF5722;">
-            <button type="submit">
-                Powrót
-            </button>
+  <form action="{% url 'main' %}" method="get">
+    <div style="--clr: #ff5722">
+      <button type="submit">Powrót</button>
+    </div>
+  </form>
+
+  <form id="userForm" method="get" style="display: none"></form>
+
+  <h3 style="color: #ff5722; text-align: center">
+    Rezerwacje użytkownika: {{ username }}
+  </h3>
+
+  <div class="info-box">
+    <p
+      style="color: #fff; text-align: center; font-size: 16px; line-height: 1.6"
+    >
+      Witamy w panelu rezerwacji!<br /><br />
+      Tutaj możesz zobaczyć tylko rezerwacje przypisane do Twojego konta.
+      Wszelkie szczegóły dotyczące Twoich rezerwacji są dostępne poniżej.<br /><br />
+      Jeśli chcesz zapoznać się z pełną ofertą dostępnych samochodów oraz
+      sprawdzić ich dostępność, przejdź do
+      <a href="{% url 'booking_list' %}" class="info-box-btn">rezerwacji</a>
+      , gdzie znajdziesz pełny katalog samochodów do wyboru.<br /><br />
+      Dziękujemy za korzystanie z naszego systemu rezerwacji! Jeśli masz
+      jakiekolwiek pytania, skontaktuj się z nami.
+    </p>
+  </div>
+
+  <div class="mycarousel">
+    {% if users_booking %}
+    <div id="carouselExampleCaptions" class="carousel slide">
+      <div class="carousel-indicators">
+        {% for booking in users_booking %}
+        <button
+          type="button"
+          data-bs-target="#carouselExampleCaptions"
+          data-bs-slide-to="{{ forloop.counter0 }}"
+          class="{% if forloop.first %}active{% endif %}"
+          aria-label="Slide {{ forloop.counter }}"
+        ></button>
+        {% endfor %}
+      </div>
+
+      <div class="carousel-inner">
+        {% for booking in users_booking %}
+        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+          <img
+            src="{{ booking.image_car.url }}"
+            class="d-block w-100"
+            alt="Car Image {{ forloop.counter }}"
+          />
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Rezerwacja {{ forloop.counter }}</h5>
+            <p>Opis rezerwacji.</p>
+          </div>
         </div>
-       
-    </form>
+        {% endfor %}
+      </div>
 
-    <form id="userForm" method="get" style="display:none;">
-    </form>
-
-    <h1>Rezerwacje użytkownika: {{ username }}</h1>
-
-
-
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselExampleCaptions"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselExampleCaptions"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+    {% else %}
+    <p>Brak rezerwacji dla użytkownika {{ username }}.</p>
+    {% endif %}
+  </div>
 </div>
-
 {% block extra_js %}
-<script src="{% static 'js/booking.js' %}"></script> 
-{% endblock %}
-
-
-{% endblock %}
+<script src="{% static 'js/booking.js' %}"></script>
+{% endblock %} {% endblock %}
