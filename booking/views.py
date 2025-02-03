@@ -12,6 +12,8 @@ from datetime import datetime
 import json
 from django.template.loader import render_to_string
 from django.http import Http404
+from django.utils import formats
+
 
 # Create your views here.
 def booking_view (request):
@@ -38,6 +40,11 @@ class BookingUserListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['username'] = self.request.GET.get('username')  
+        for booking in context['users_booking']:
+            if booking.end_date:
+                booking.formatted_end_date = booking.end_date.strftime('%d %B %Y')
+            else:
+                booking.formatted_end_date = "Brak daty rezerwacji"
         return context
 
 
@@ -81,8 +88,9 @@ class BookingSearchView(ListView):
         return queryset
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)   
         return context
+    
 
 class BookingView(View):
     def post(self, request, **kwargs):

@@ -55,7 +55,7 @@
           />
           <div class="carousel-caption d-none d-md-block">
             <h5>Rezerwacja {{ forloop.counter }}</h5>
-            <p>Opis rezerwacji.</p>
+            <p>Twoja rezerwacja kończy się: {{ booking.formatted_end_date  }}</p>
           </div>
         </div>
         {% endfor %}
