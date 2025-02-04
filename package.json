@@ -1,0 +1,25 @@
+{
+  "name": "car_django_booking",
+  "version": "1.0.0",
+  "description": "Rezerwacja samochodów",
+  "main": "index.js",
+  "scripts": {
+    "format": "prettier --write \"**/*/templates/**/*.html\"",
+    "aboutus_sass": "sass --watch aboutus/static/aboutus.scss:aboutus/static/aboutus.css --load-path=car_django/static",
+    "booking_sass": "sass --watch booking/static/booking.scss:booking/static/booking.css --load-path=car_django/static",
+    "car_django_sass": "sass --watch car_django/static/index.scss:car_django/static/index.css --load-path=car_django/static",
+    "contact_sass": "sass --watch contact/static/contact.scss:contact/static/contact.css --load-path=car_django/static",
+    "main_sass": "sass --watch main/static/main.scss:main/static/main.css --load-path=car_django/static",
+    "opinion_sass": "sass --watch opinion/static/opinion.scss:opinion/static/opinion.css --load-path=car_django/static",
+    "users_sass": "sass --watch users/static/login.scss:users/static/login.css --load-path=car_django/static",
+    "watch_sass": "npm-run-all --parallel aboutus_sass booking_sass car_django_sass contact_sass main_sass opinion_sass users_sass",
+    "test_booking": "python manage.py test booking.test.test_booking",
+    "test_opinion": "python manage.py test opinion.test.test_opinion"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  }
+}
