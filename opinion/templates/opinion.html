@@ -1,142 +1,127 @@
-{% extends 'index.html' %}
-{% load static %}
+{% extends 'index.html' %} {% load static %} {% block extra_css %}
+<link rel="stylesheet" href="{% static 'opinion.css' %}" />
+{% endblock %} {% block content %}
+<div class="opinionWrapper">
+  <img
+    class="car-image kenburns-top"
+    src="{% static 'img/auto_opinion.jpg' %}"
+    alt="Audi"
+  />
+  <form action="{% url 'main' %}" method="get">
+    <div style="--clr: #ff5722">
+      <button type="submit">Powrót</button>
+    </div>
+  </form>
 
-{% block extra_css %}
-    <link rel="stylesheet" href="{% static 'opinion.css' %}">
-{% endblock %}
+  <div class="container mt-5 addOpinion">
+    <h1 style="color: #ff5722">Opinie</h1>
 
+    <h3 style="color: #ff5722">Dodaj opinię</h3>
 
-{% block content %}
-    <div class="opinionWrapper">
-        <img 
-        class="car-image kenburns-top" src="{% static 'img/auto_opinion.jpg' %}" alt="Audi">
-        <form action="{% url 'main' %}" method="get">
-            <div style="--clr: #FF5722;">
-                <button type="submit">
-                    Powrót
-                </button>
-            </div>
-           
-        </form>
+    <form id="opinion-form" method="POST" action="{% url 'add_opinion' %}">
+      {% csrf_token %}
 
-      <div class="container mt-5 addOpinion">
+      <div class="mb-3">
+        <label style="color: #ff5722; font-size: 1.8rem" for="id_booking"
+          >Wybierz samochód</label
+        >
+        {{ form.booking }}
+      </div>
 
-        <h1
-        style="color: #FF5722;"
-        >Opinie</h1>
+      <label
+        style="color: #ff5722; font-size: 1.8rem; margin-right: 10px"
+        for="id_rating"
+        >Wybierz ocenę</label
+      >
+      <div
+        style="
+          display: flex;
+          justify-content: flex-start;
+          flex-direction: row;
+          gap: 10px;
+          color: #ff5722;
+        "
+      >
+        <label for="rating-1">
+          <input type="radio" id="rating-1" name="rating" value="1" /> 1
+        </label>
+        <label for="rating-2">
+          <input type="radio" id="rating-2" name="rating" value="2" /> 2
+        </label>
+        <label for="rating-3">
+          <input type="radio" id="rating-3" name="rating" value="3" /> 3
+        </label>
+        <label for="rating-4">
+          <input type="radio" id="rating-4" name="rating" value="4" /> 4
+        </label>
+        <label for="rating-5">
+          <input type="radio" id="rating-5" name="rating" value="5" /> 5
+        </label>
+      </div>
 
-        <h3
-        style="color: #FF5722;"
-        >Dodaj opinię</h3>
-        
-        <form id="opinion-form" method="POST" action="{% url 'add_opinion' %}">
-            {% csrf_token %}
-            
-            <div class="mb-3">
-                <label 
-                 style="color: #FF5722; font-size: 1.8rem;"
-                for="id_booking">Wybierz samochód</label>
-                {{ form.booking }}
-            </div>
- 
-            <div class="mb-3">
-                <label 
-                style="color: #FF5722; font-size: 1.8rem;"
-                for="id_rating">Wybierz ocenę</label>
-                <div
-                style="position: relative;
-                height: 118px;
-                color: #FF5722;
-                margin-left: 3em;
-                "
+      <div class="mb-3">
+        <label style="color: #ff5722; font-size: 1.8rem" for="id_comment"
+          >Twój komentarz</label
+        >
+        {{ form.comment }}
+      </div>
+
+      <button style="background-color: #ff5722" type="submit">
+        Dodaj opinię
+      </button>
+    </form>
+  </div>
+
+  <div class="container-card">
+    <div class="container-user">
+      <div class="container-opinion-user">
+        {% for opinion in opinions %}
+        <div class="container-box">
+          <div class="container-item">
+            <div class="container-header-user">
+              <h2 class="container-header">{{ opinion.user }}</h2>
+
+              {% load rating %}
+              <div class="rating opinion__box-wrapper--container---rating">
+                {{ opinion.rating }} {% for i in 5|to %}
+                <span class="star {% if i <= opinion.rating %}filled{% endif %}"
+                  >★</span
                 >
-                    {{ form.rating }}
-                </div>
-                
-            </div>
-            
-            <div class="mb-3"
-            >
-                <label 
-                 style="color: #FF5722; font-size: 1.8rem;"
-                for="id_comment">Twój komentarz</label>
-                    {{ form.comment }}
-               
-            </div>
-            
-            <button 
-            style="background-color: #FF5722;"
-            type="submit"
-            >Dodaj opinię</button>
-        </form>
-    </div>
-    
-
-    <div class="container-card">
-        <div class="container-user">
-            <div class="container-opinion-user">
-                {% for opinion in opinions %}
-                <div class="container-box">
-                    <div class="container-item">
-                        <div class="container-header-user">
-                            <h2 class="container-header">
-                                {{ opinion.user }}
-                            </h2>
-        
-                            {% load rating %}
-                            <div class="rating opinion__box-wrapper--container---rating">
-                                {{ opinion.rating }}
-                                {% for i in 5|to %}
-                                    <span class="star {% if i <= opinion.rating %}filled{% endif %}">★</span>
-                                {% endfor %}
-                            </div>
-        
-                        </div>
-    
-                        <div class="container-header-user">
-                            
-                            <p
-                            class="car"
-                            >
-                                Samochód: <span
-                                style="color: #333;"
-                                >{{ opinion.booking }} </span>
-                            </p>
-
-        
-                        </div>
-
-                        <div class="container-under">
-                            <div class="container-under-first">
-                                {% if opinion.rating == 1 %}
-                                <span>Bardzo niezadowolony klient</span>
-                                {% elif opinion.rating == 2 %}
-                                    <span>Niezadowolony, ale nie tragicznie</span>
-                                {% elif opinion.rating == 3 %}
-                                    <span>Średnia jakość usługi, poprawić</span>
-                                {% elif opinion.rating == 4 %}
-                                    <span>Zadowolony, polecam serdecznie</span>
-                                {% elif opinion.rating == 5 %}
-                                    <span>Absolutnie fantastyczna jakość</span>
-                                {% endif %}
-                            </div>
-                            <p
-                            class="container-under-second"
-                            >{{ opinion.comment }}</p>
-                        </div>
-
-                    </div>
-                </div>
                 {% endfor %}
+              </div>
             </div>
+
+            <div class="container-header-user">
+              <p class="car">
+                Samochód:
+                <span style="color: #333">{{ opinion.booking }} </span>
+              </p>
+            </div>
+
+            <div class="container-under">
+              <div class="container-under-first">
+                {% if opinion.rating == 1 %}
+                <span>Bardzo niezadowolony klient</span>
+                {% elif opinion.rating == 2 %}
+                <span>Niezadowolony, ale nie tragicznie</span>
+                {% elif opinion.rating == 3 %}
+                <span>Średnia jakość usługi, poprawić</span>
+                {% elif opinion.rating == 4 %}
+                <span>Zadowolony, polecam serdecznie</span>
+                {% elif opinion.rating == 5 %}
+                <span>Absolutnie fantastyczna jakość</span>
+                {% endif %}
+              </div>
+              <p class="container-under-second">{{ opinion.comment }}</p>
+            </div>
+          </div>
         </div>
+        {% endfor %}
+      </div>
     </div>
-
-    </div>
-
+  </div>
+</div>
 
 {% block extra_js %}
-<script src="{% static 'js/opinion.js' %}"></script> 
-{% endblock %}
-
-{% endblock %}
+<script src="{% static 'js/opinion.js' %}"></script>
+{% endblock %} {% endblock %}
