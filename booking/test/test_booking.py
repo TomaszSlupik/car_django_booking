@@ -5,6 +5,26 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from datetime import datetime
 
+class BookingModelTest(TestCase):
+
+    def setUp(self):
+        self.user = User.objects.create_user(username='test', password='test123')
+
+    def test_booking(self):
+        booking = Booking.objects.create(
+            name_car_booking='Testowy samochód',
+            image_car=None,  
+            is_booked=False,
+            start_date='2025-02-06',
+            end_date='2025-02-28',
+            user=self.user
+        )
+        
+        self.assertEqual(booking.name_car_booking, 'Testowy samochód')
+        self.assertEqual(booking.is_booked, False)
+        self.assertEqual(booking.start_date, '2025-02-06')
+        self.assertEqual(booking.end_date, '2025-02-28')
+        self.assertEqual(booking.user, self.user)
 
 class BookingListViewTest (TestCase):
     
