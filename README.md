@@ -16,6 +16,7 @@ W przypadku braku konta, użytkownicy mają możliwość szybkiej i łatwej reje
 
 ### 2. Usunięcie Tokenu i Komunikaty Błędów
 
+W przypadku **utraty ważności tokenu** sesji użytkownik otrzymuje odpowiedni komunikat informujący o konieczności ponownego zalogowania się: <u>Musisz być zalogowany, aby korzystać z aplikacji.</u> System automatycznie wygeneruje komunikat informujący o wygaśnięciu sesji i przekieruje użytkownika do strony logowania.
 
 ### 1. Technologie
 
