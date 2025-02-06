@@ -28,6 +28,7 @@ from users.views import (
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from booking.views import BookingDeleteView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -39,5 +40,6 @@ urlpatterns = [
     path("main/booking/", include("booking.urls")),
     path("main/opinion/", include("opinion.urls")),
     path("main/contact/", include("contact.urls")),
-    path("main/aboutus/", include("aboutus.urls"))
+    path("main/aboutus/", include("aboutus.urls")),
+    path('main/delete/<int:booking_id>/', BookingDeleteView.as_view(), name='booking_delete'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

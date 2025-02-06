@@ -1,105 +1,140 @@
-{% extends 'index.html' %}
-{% load static %}
-
-{% block extra_css %}
-    <link rel="stylesheet" href="{% static 'login.css' %}">
-{% endblock %}
-
-
-{% block content %}
+{% extends 'index.html' %} {% load static %} {% block extra_css %}
+<link rel="stylesheet" href="{% static 'login.css' %}" />
+{% endblock %} {% block content %}
 <div class="loginUser">
+  {% if error %}
+  <div
+    class="alert alert-danger loginUser__alert"
+    id="register-error"
+    role="alert"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      fill="currentColor"
+      class="bi bi-exclamation-circle-fill"
+      viewBox="0 0 16 16"
+    >
+      <path
+        d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2"
+      />
+    </svg>
+    &nbsp;
+    <span id="alert-message">{{ error }}</span>
+  </div>
+  {% endif %} {% if messages %} {% for message in messages %}
+  <div
+    class="alert alert-success loginUser__alertregister"
+    id="register-success"
+    role="alert"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      fill="currentColor"
+      class="bi bi-exclamation-circle-fill"
+      viewBox="0 0 16 16"
+    >
+      <path
+        d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2"
+      />
+    </svg>
+    &nbsp;
+    <span id="alert-message"
+      >{{ message }}
+      <form action="{% url 'login' %}" method="get" style="display: inline">
+        <button
+          type="submit"
+          style="
+            font-weight: 500;
+            text-decoration: underline;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+          "
+        >
+          Zaloguj się
+        </button>
+      </form>
+    </span>
+  </div>
+  {% endfor %} {% endif %}
+  <img
+    style="width: 100vw; height: 100vh; background-color: black"
+    src="{% static 'img/bg.jpg' %}"
+    alt="Wypożyczalnia samochodów - podgląd samochodów"
+  />
+  <div class="loginUser__box">
+    <div class="loginUser__box-wrapperRegister">
+      <div class="loginUser__box-wrapperRegister--header">
+        <h2 class="loginUser__box-wrapperRegister--header---login text-center">
+          Zarejestruj się
+        </h2>
+        <form
+          method="POST"
+          autocomplete="off"
+          class="needs-validation contact-form"
+          novalidate
+        >
+          {% csrf_token %}
 
-    {% if error %}
-    <div class="alert alert-danger loginUser__alert" id="register-error" role="alert">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
-            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2"/>
-          </svg>
-          &nbsp;
-        <span id="alert-message">{{ error }}</span>
-    </div>
-    {% endif %}
-
-    {% if messages %}
-        {% for message in messages %}
-    <div class="alert alert-success loginUser__alertregister" id="register-success" role="alert">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
-            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2"/>
-          </svg>
-          &nbsp;
-        <span id="alert-message">{{ message }}
-            <form action="{% url 'login' %}" method="get"  style="display: inline;">
-                <button type="submit" style="font-weight: 500; text-decoration: underline; cursor: pointer; background: none; border: none; padding: 0;">
-                    Zaloguj się
-                </button>
-            </form>
-        </span>
-    </div>
-    {% endfor %}
-    {% endif %}
-    <img 
-    style="width: 100vw; height: 100vh; background-color: black;"
-    src="{% static 'img/bg.jpg' %}"  alt="Wypożyczalnia samochodów - podgląd samochodów">
-    <div class="loginUser__box">
-        
-        <div class="loginUser__box-wrapperRegister">
-            <div class="loginUser__box-wrapperRegister--header">
-                <h2 class="loginUser__box-wrapperRegister--header---login text-center">Zarejestruj się</h2>
-                <form method="POST"
-                autocomplete="off" 
-                class="needs-validation contact-form" novalidate
-                >
-                    {% csrf_token %}
-
-                    <div class="form-group">
-                        <label for="username">Login:</label>
-                        <input 
-                        class="form-control loginUser__box-wrapperRegister--label input"
-                        type="text" id="username" name="username" required> 
-                        <div class="valid-feedback check-txt">
-                            Dane poprawne!
-                        </div>
-                        <div class="invalid-feedback check-txt">
-                            Musisz wprowadzić swoją nazwę użytkownika!
-                        </div>  
-                    </div>
-       
-                    <div class="form-group">
-                        <label for="email">Email:</label>
-                        <input 
-                        class="form-control"
-                        type="email" id="email" name="email" required>
-                        <div class="valid-feedback check-txt">
-                            Dane poprawne!
-                        </div>
-                        <div class="invalid-feedback check-txt">
-                            Musisz wprowadzić swój e-mail!
-                        </div>  
-                    </div>
-
-                    <div class="form-group">
-                        <label for="password">Password:</label>
-                        <input 
-                        class="form-control"
-                        type="password" id="password" name="password" required>   
-                        <div class="valid-feedback check-txt">
-                            Dane poprawne!
-                        </div>
-                        <div class="invalid-feedback check-txt">
-                            Musisz wprowadzić hasło!
-                        </div> 
-                    </div>
-
-                    <button 
-                    style="background-color: #FF5722;"
-                    type="submit">Zarejestruj się</button>
-                </form>
+          <div class="form-group">
+            <label for="username">Login:</label>
+            <input
+              class="form-control loginUser__box-wrapperRegister--label input"
+              type="text"
+              id="username"
+              name="username"
+              required
+            />
+            <div class="valid-feedback check-txt">Dane poprawne!</div>
+            <div class="invalid-feedback check-txt">
+              Musisz wprowadzić swoją nazwę użytkownika!
             </div>
-        </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input
+              class="form-control"
+              type="email"
+              id="email"
+              name="email"
+              required
+            />
+            <div class="valid-feedback check-txt">Dane poprawne!</div>
+            <div class="invalid-feedback check-txt">
+              Musisz wprowadzić swój e-mail!
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input
+              class="form-control"
+              type="password"
+              id="password"
+              name="password"
+              required
+            />
+            <div class="valid-feedback check-txt">Dane poprawne!</div>
+            <div class="invalid-feedback check-txt">
+              Musisz wprowadzić hasło!
+            </div>
+          </div>
+
+          <button style="background-color: #ff5722" type="submit">
+            Zarejestruj się
+          </button>
+        </form>
+      </div>
     </div>
+  </div>
 </div>
 
 {% block extra_js %}
-<script src="{% static 'js/register.js' %}"></script> 
-{% endblock %}
-
-{% endblock %}
+<script src="{% static 'js/register.js' %}"></script>
+{% endblock %} {% endblock %}

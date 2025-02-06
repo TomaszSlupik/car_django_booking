@@ -174,6 +174,96 @@
     box-shadow: 0 0 5px rgba(255, 87, 34, 0.5); 
 }
 
+.user {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+// Karuzela rezerwacji
+.mycarousel {
+    position: relative;
+    width: 100vw;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    flex-direction: column; 
+}
+
+.carousel {
+    width: 90%;
+    height: 250px;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto; 
+    background-color: #000; 
+    border-radius: 10px;
+}
+
+.tableUser {
+    position: relative;
+    width: 90%;
+    margin: 2em auto;  
+    border-radius: 10px;
+}
+
+
+
+.carousel-inner {
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-caption {
+    background-color: rgba(0, 0, 0, 0.5); 
+    color: white;
+    padding: 5px;
+    font-size: 14px; 
+}
+
+
+.carousel-control-prev, 
+.carousel-control-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    color: #FF5722; 
+    font-size: 30px;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 2; 
+}
+
+/* Strzałki */
+.carousel-control-prev-icon, 
+.carousel-control-next-icon {
+    font-size: 30px;
+    color: #FF5722;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    background-color: #FF5722; 
+    z-index: 10;
+}
+
+.carousel-control-prev:before, 
+.carousel-control-next:before {
+    content: '';
+}
+
+.carousel-indicators button {
+    background-color: #FF5722; 
+}
+
+.carousel-control-prev {
+    left: 10px; 
+}
+
+.carousel-control-next {
+    right: 10px; 
+}
 
 @media (max-width: 576px) {
     .form-group {
@@ -186,7 +276,7 @@
 }
 
 
-@media (min-width: 577px) {
+@media screen and (min-width:576px) {
     .select-reservation {
         font-size: 1.1rem; 
         max-width: 400px; 
@@ -200,14 +290,97 @@
     .btn-filter, .btn-reset {
         margin: 0em 0.4em;
     }
+    .carousel {
+        height: 340px;
+    }
 }
 
 
-.user {
+@media screen and (min-width:768px) {
+    .carousel {
+        height: 465px;
+    }
+}
+
+@media screen and (min-width:992px) {
+    .carousel {
+        height: 640px;
+    }
+}
+
+@media screen and (min-width:1200px) {
+    .carousel {
+        height: 860px;
+    }
+}
+
+@media screen and (min-width:1400px) {
+    .carousel {
+        height: 860px;
+        width: 60%;
+    }
+    .tableUser {
+        width: 60%;
+    }
+}
+
+
+
+.info-box {
     position: relative;
-    width: 100%;
-    height: 100vh;
-    overflow: auto;
+    background-color: #212121; 
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+    margin-top: 20px;
+    color: #fff;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 
+.info-box-btn {
+    background-color: #FF5722;
+    color: white;
+    padding: 12px 24px;
+    text-decoration: none; 
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: inline-block;
+    margin-top: 20px; 
+}
+
+.info-box-btn:hover {
+    background-color: #e64a19;
+    color: white;
+}
+
+@media (max-width: 576px) {
+    .info-box {
+        padding: 20px;
+    }
+    .info-box p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 768px) {
+    .info-box {
+        padding: 25px;
+    }
+    .info-box p {
+        font-size: 15px;
+    }
+}
+
+@media (min-width: 992px) {
+    .info-box {
+        padding: 30px;
+    }
+    .info-box p {
+        font-size: 16px;
+    }
+}

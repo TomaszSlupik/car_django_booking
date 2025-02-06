@@ -30,52 +30,44 @@
     </p>
   </div>
 
-    <!-- Tabela z rezerwacjami -->
-     <div class="tableUser">
-      <table 
-      class="table">
-        <thead>
-          <tr>
-            <th>Lp.</th>
-            <th>Samochód</th>
-            <th>Data zakończenia</th>
-            <th
-            style="width: 200px"
-            >Akcja</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for booking in users_booking %}
-          <tr>
-            <td>{{ forloop.counter }}</td>
-            <td>{{ booking.name_car_booking }}</td>
-            <td>{{ booking.formatted_end_date }}</td>
-            <td>
-              <form method="POST" id="delete-booking-form">
-                {% csrf_token %}
-                <img 
-                    data-booking-id="{{ booking.id }}"
-                    src="{% static 'svg/trash.svg' %}" 
-                    alt="ikonka usuwania"
-                    style="cursor: pointer; width: 30px; height: 30px;" 
-                    class="deleteBookingIcon" />
+  <!-- Tabela z rezerwacjami -->
+  <div class="tableUser">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Lp.</th>
+          <th>Samochód</th>
+          <th>Data zakończenia</th>
+          <th style="width: 200px">Akcja</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for booking in users_booking %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ booking.name_car_booking }}</td>
+          <td>{{ booking.formatted_end_date }}</td>
+          <td>
+            <form method="POST" id="delete-booking-form">
+              {% csrf_token %}
+              <img
+                data-booking-id="{{ booking.id }}"
+                src="{% static 'svg/trash.svg' %}"
+                alt="ikonka usuwania"
+                style="cursor: pointer; width: 30px; height: 30px"
+                class="deleteBookingIcon"
+              />
             </form>
-
-            </td>
-          </tr>
-          {% empty %}
-          <tr>
-            <td colspan="4">Brak rezerwacji.</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-  
-     </div>
-
-
-
-
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="4">Brak rezerwacji.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 
   <div class="mycarousel">
     {% if users_booking %}
@@ -102,7 +94,7 @@
           />
           <div class="carousel-caption d-none d-md-block">
             <h5>Rezerwacja {{ forloop.counter }}</h5>
-            <p>Twoja rezerwacja kończy się: {{ booking.formatted_end_date  }}</p>
+            <p>Twoja rezerwacja kończy się: {{ booking.formatted_end_date }}</p>
           </div>
         </div>
         {% endfor %}

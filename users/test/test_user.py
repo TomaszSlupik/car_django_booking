@@ -14,15 +14,8 @@ class RegisterViewTest(TestCase):
             'email': 'jankowalski@gmail.com',
             'password': 'janekKowal123',
         }
-        self.invalid_data = {
-            'username': '',  
-            'email': 'test@gmail.com',
-            'password': '123',  
-        }
-        
-        self.client = APIClient()
 
-        
+        self.client = APIClient()
 
     def test_register_get(self):
         res = self.client.get(self.url)
@@ -30,7 +23,7 @@ class RegisterViewTest(TestCase):
         self.assertTemplateUsed(res, 'register.html')
 
 
-    def test_register_post_success(self):
+    def test_register_success(self):
         res = self.client.post(self.url, self.valid_data)
         self.assertEqual(res.status_code, 200)
         self.assertTemplateUsed(res, 'register.html')
@@ -41,3 +34,4 @@ class RegisterViewTest(TestCase):
         # Komunikat dla użytkownika
         msg = list(get_messages(res.wsgi_request))
         self.assertEqual(str(msg[0]), "Zarejestrowałeś się pomyślnie!")
+

@@ -1,122 +1,160 @@
-{% extends 'index.html' %}
-{% load static %}
+{% extends 'index.html' %} {% load static %} {% block extra_css %}
+<link rel="stylesheet" href="{% static 'login.css' %}" />
+{% endblock %} {% block content %}
+<div class="loginUser">
+  <div
+    class="alert alert-danger d-none loginUser__alert"
+    id="login-error"
+    role="alert"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      fill="currentColor"
+      class="bi bi-exclamation-circle-fill"
+      viewBox="0 0 16 16"
+    >
+      <path
+        d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2"
+      />
+    </svg>
+    &nbsp;
+    <span id="alert-message"></span>
+  </div>
+  <img
+    style="width: 100vw; height: 100vh; background-color: black"
+    src="{% static 'img/bg.jpg' %}"
+    alt="Wypożyczalnia samochodów - podgląd samochodów"
+  />
+  <div class="loginUser__box">
+    <div class="loginUser__box-wrapper">
+      <div class="loginUser__box-wrapper--header">
+        <svg
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          style="
+            position: absolute;
+            right: 2%;
+            top: 2%;
+            width: 20px;
+            height: 20px;
+            color: gold;
+            cursor: crosshair;
+          "
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-info-circle-fill"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"
+          />
+        </svg>
+        <h2 class="loginUser__box-wrapper--header---login text-center">
+          Zaloguj się
+        </h2>
 
-{% block extra_css %}
-    <link rel="stylesheet" href="{% static 'login.css' %}">
-{% endblock %}
+        <form
+          id="login-form"
+          method="POST"
+          onsubmit="checkLoginUser(event)"
+          autocomplete="off"
+          class="needs-validation contact-form"
+          novalidate
+        >
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="name">Nazwa:</label>
+            <input
+              type="text"
+              value=""
+              class="form-control loginUser__box-wrapper--label input"
+              id="name"
+              name="name"
+              required
+            />
 
-{% block content %}
-    <div class="loginUser">
-        <div class="alert alert-danger d-none loginUser__alert" id="login-error" role="alert">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
-                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2"/>
-              </svg>
-              &nbsp;
-            <span id="alert-message"></span>
-        </div>
-        <img 
-        style="width: 100vw; height: 100vh; background-color: black;"
-        src="{% static 'img/bg.jpg' %}"  alt="Wypożyczalnia samochodów - podgląd samochodów">
-        <div class="loginUser__box">
-            <div class="loginUser__box-wrapper">
-                <div class="loginUser__box-wrapper--header">
-                    <svg 
-                    data-bs-toggle="modal" 
-                    data-bs-target="#exampleModal"
-                    style="position: absolute;
-                    right: 2%;
-                    top: 2%;
-                    width: 20px;
-                    height: 20px;
-                    color: gold;
-                    cursor: crosshair;
-                    "
-                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
-                        <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/>
-                    </svg>
-                    <h2 class="loginUser__box-wrapper--header---login text-center">Zaloguj się</h2>
-                    
-                    <form id="login-form" method="POST" onsubmit="checkLoginUser(event)"
-                    autocomplete="off" 
-                    class="needs-validation contact-form" novalidate>
-                        {% csrf_token %}
-                        <div class="form-group">
-                            <label for="name">Nazwa:</label>
-                            <input type="text" 
-                            value=""
-                            class="form-control loginUser__box-wrapper--label input" id="name" name="name" required>
-
-                            <div class="valid-feedback check-txt">
-                                Dane poprawne!
-                            </div>
-                            <div class="invalid-feedback check-txt">
-                                Musisz wprowadzić swoją nazwę użytkownika!
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Hasło:</label>
-                            <input 
-                            value=""
-                            type="password" class="form-control" id="password" name="password" required>
-                            <div class="valid-feedback check-txt">
-                                Dane poprawne!
-                            </div>
-                            <div class="invalid-feedback check-txt">
-                                Musisz wprowadzić poprawne hasło
-                            </div>
-                        </div>
-                        <button 
-                        style="background-color: black;"
-                        class="btn-form"
-                        type="submit" 
-                        >Zaloguj się</button>
-                    </form>
-                </div>
-                <div class="loginUser__box-wrapper--underText">
-                    Nie masz jeszcze konta w <span>Car Slupik Rent? </span>
-                </div>
-    
-                <form action="{% url 'register' %}" method="get">
-                    <button 
-                    style="background-color: #FF5722;"
-                    type="submit" >
-                        Zarejestruj się
-                    </button>
-                </form>
-            </div>  
-        </div>
-
-
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="exampleModalLabel">Informacje o logowaniu</h1>
-                </div>
-                <p 
-                style="color: black;"
-                class="modal-body">
-                    Aplikacja została stworzona w celu rezerwacji samochodów. 
-                    Aby dokonać rezerwacji, konieczna jest wcześniejsza rejestracja. 
-                    Po zalogowaniu się, przejdź do sekcji „Rezerwacja”, aby kontynuować proces.
-                    <br><br>
-                    <strong>Testowy użytkownik:</strong><br>
-                    <em>Login:</em> test<br>
-                    <em>Hasło:</em> test123
-                </p>
-                <div class="modal-footer">
-                  <button 
-                  class="acceptButton"
-                  style="background-color: #FF5722;"
-                  type="button">Akceptuję</button>
-                </div>
-              </div>
+            <div class="valid-feedback check-txt">Dane poprawne!</div>
+            <div class="invalid-feedback check-txt">
+              Musisz wprowadzić swoją nazwę użytkownika!
             </div>
           </div>
+          <div class="form-group">
+            <label for="password">Hasło:</label>
+            <input
+              value=""
+              type="password"
+              class="form-control"
+              id="password"
+              name="password"
+              required
+            />
+            <div class="valid-feedback check-txt">Dane poprawne!</div>
+            <div class="invalid-feedback check-txt">
+              Musisz wprowadzić poprawne hasło
+            </div>
+          </div>
+          <button
+            style="background-color: black"
+            class="btn-form"
+            type="submit"
+          >
+            Zaloguj się
+          </button>
+        </form>
+      </div>
+      <div class="loginUser__box-wrapper--underText">
+        Nie masz jeszcze konta w <span>Car Slupik Rent? </span>
+      </div>
+
+      <form action="{% url 'register' %}" method="get">
+        <button style="background-color: #ff5722" type="submit">
+          Zarejestruj się
+        </button>
+      </form>
     </div>
+  </div>
+
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">
+            Informacje o logowaniu
+          </h1>
+        </div>
+        <p style="color: black" class="modal-body">
+          Aplikacja została stworzona w celu rezerwacji samochodów. Aby dokonać
+          rezerwacji, konieczna jest wcześniejsza rejestracja. Po zalogowaniu
+          się, przejdź do sekcji „Rezerwacja”, aby kontynuować proces.
+          <br /><br />
+          <strong>Testowy użytkownik:</strong><br />
+          <em>Login:</em> test<br />
+          <em>Hasło:</em> test123
+        </p>
+        <div class="modal-footer">
+          <button
+            class="acceptButton"
+            style="background-color: #ff5722"
+            type="button"
+          >
+            Akceptuję
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 {% block extra_js %}
-<script src="{% static 'js/login.js' %}"></script> 
-{% endblock %}
-
-{% endblock %}
+<script src="{% static 'js/login.js' %}"></script>
+{% endblock %} {% endblock %}

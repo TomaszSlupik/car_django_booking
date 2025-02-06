@@ -1,142 +1,161 @@
-{% extends 'index.html' %}
-{% load static %}
-
-{% block extra_css %}
-    <link rel="stylesheet" href="{% static 'booking.css' %}">
-{% endblock %}
-
-{% block content %}
+{% extends 'index.html' %} {% load static %} {% block extra_css %}
+<link rel="stylesheet" href="{% static 'booking.css' %}" />
+{% endblock %} {% block content %}
 <div class="booking">
-
-    <div class="booking__wrapper">
-        <div class="sticky-header text-center">
-            <h1>Rezerwacja Samochodu</h1>
-        </div>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
-            <div 
-            style="width: 100vw;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            "
-            class="container-fluid">
-                <form
-                style="width: 100%;"
-                class="d-flex"
-                method="get" action="{% url 'booking_search' %}"
-                >
-                    <div class="form-booking-search">
-                        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
-                        <input 
-                        id="car_name_input" 
-                        type="text" 
-                        name="car_name" 
-                        class="form-control me-2" 
-                        placeholder="Nazwa samochodu"
-                        value="{{ request.GET.car_name|default:'' }}"
-                    >
-                    </div>
-                    <button 
-                    style="background-color: #FF5722;"
-                    type="submit">Wyszukaj</button>
-                </form>
-                <form 
-                style="width: 100%;"
-                class="d-flex" method="get" action="{% url 'booking_list' %}">
-                    <div class="form-booking">
-
-                        <div class="form-booking-btn">
-                            <select name="is_booked" class="select-reservation form-select me-2" aria-label="Booking Status">
-                                <option value="">Wybierz status rezerwacji</option>
-                                <option value="true">Zarezerwowane</option>
-                                <option value="false">Dostępne</option>
-                            </select>
-                            <button  
-                            class="btn-filter"
-                            type="submit">Filtruj</button>
-                            <button type="button" class="btn-reset reset_filter">Wyczyść</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </nav>
-
-        <form action="{% url 'main' %}" method="get">
-            <div style="--clr: #FF5722;">
-                <button 
-                style="margin-bottom: 0.4em;"
-                type="submit">Powrót</button>
-            </div>
-        </form>
-        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
-        <div class="results-container row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-3  g-4">
-            {% for booking in bookings %}
-                <div class="col booking__wrapper-card">
-                    <div class="card {% if booking.is_booked %} booked {% endif %}"> 
-                        {% if booking.image_car %}
-                        <img 
-                            style="width: 300px; height: 200px;"
-                            src="{{ booking.image_car.url }}" class="card-img-top" alt="{{ booking.name_car_booking }}">
-                        {% else %}
-                        <img 
-                            style="width: 300px; height: 200px;"
-                            src="{% static 'path/to/default/image.jpg' %}" class="card-img-top" alt="Default Image">
-                        {% endif %}
-                        <div class="card-body">
-                            <h5 class="card-title">{{ booking.name_car_booking }}</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            {% if booking.is_booked %}
-                                <p class="text-danger font-weight-bold">ZAREZERWOWANE</p>
-                            {% endif %}
-                        </div>
-
-                        <div class="booking__wrapper-card--date p-3">
-                            <h5 class="text-center mb-3">Wybierz Daty Rezerwacji</h5>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="start_date_reservation_{{ booking.id }}">Data rozpoczęcia:</label>
-                                    <input type="date" id="start_date_reservation_{{ booking.id }}" 
-                                    class="form-control" 
-                                    required
-                                    value="{{ booking.start_date|date:'Y-m-d' }}"
-                                    >
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="end_date_reservation_{{ booking.id }}">Data zakończenia:</label>
-                                    <input type="date" id="end_date_reservation_{{ booking.id }}" 
-                                    class="form-control" 
-                                    required
-                                    value="{{ booking.end_date|date:'Y-m-d' }}"
-                                    >
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="booking__wrapper-card--btn">
-                            {% if booking.is_booked %}
-                            <button 
-                            disabled
-                            style="background-color: #FF5722;">
-                                Rezerwuj
-                            </button>
-                            {% else %}
-                            <button 
-                             style="background-color: #FF5722;"
-                            class="btnReservation" data-booking-id="{{ booking.id }}">
-                                Rezerwuj
-                            </button>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-          </div>
+  <div class="booking__wrapper">
+    <div class="sticky-header text-center">
+      <h1>Rezerwacja Samochodu</h1>
     </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+      <div
+        style="
+          width: 100vw;
+          position: relative;
+          display: flex;
+          flex-direction: column;
+        "
+        class="container-fluid"
+      >
+        <form
+          style="width: 100%"
+          class="d-flex"
+          method="get"
+          action="{% url 'booking_search' %}"
+        >
+          <div class="form-booking-search">
+            <input
+              type="hidden"
+              name="csrfmiddlewaretoken"
+              value="{{ csrf_token }}"
+            />
+            <input
+              id="car_name_input"
+              type="text"
+              name="car_name"
+              class="form-control me-2"
+              placeholder="Nazwa samochodu"
+              value="{{ request.GET.car_name|default:'' }}"
+            />
+          </div>
+          <button style="background-color: #ff5722" type="submit">
+            Wyszukaj
+          </button>
+        </form>
+        <form
+          style="width: 100%"
+          class="d-flex"
+          method="get"
+          action="{% url 'booking_list' %}"
+        >
+          <div class="form-booking">
+            <div class="form-booking-btn">
+              <select
+                name="is_booked"
+                class="select-reservation form-select me-2"
+                aria-label="Booking Status"
+              >
+                <option value="">Wybierz status rezerwacji</option>
+                <option value="true">Zarezerwowane</option>
+                <option value="false">Dostępne</option>
+              </select>
+              <button class="btn-filter" type="submit">Filtruj</button>
+              <button type="button" class="btn-reset reset_filter">
+                Wyczyść
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </nav>
+
+    <form action="{% url 'main' %}" method="get">
+      <div style="--clr: #ff5722">
+        <button style="margin-bottom: 0.4em" type="submit">Powrót</button>
+      </div>
+    </form>
+    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" />
+    <div
+      class="results-container row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-3 g-4"
+    >
+      {% for booking in bookings %}
+      <div class="col booking__wrapper-card">
+        <div class="card {% if booking.is_booked %} booked {% endif %}">
+          {% if booking.image_car %}
+          <img
+            style="width: 300px; height: 200px"
+            src="{{ booking.image_car.url }}"
+            class="card-img-top"
+            alt="{{ booking.name_car_booking }}"
+          />
+          {% else %}
+          <img
+            style="width: 300px; height: 200px"
+            src="{% static 'path/to/default/image.jpg' %}"
+            class="card-img-top"
+            alt="Default Image"
+          />
+          {% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{ booking.name_car_booking }}</h5>
+            <p class="card-text">
+              This is a longer card with supporting text below as a natural
+              lead-in to additional content. This content is a little bit
+              longer.
+            </p>
+            {% if booking.is_booked %}
+            <p class="text-danger font-weight-bold">ZAREZERWOWANE</p>
+            {% endif %}
+          </div>
+
+          <div class="booking__wrapper-card--date p-3">
+            <h5 class="text-center mb-3">Wybierz Daty Rezerwacji</h5>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="start_date_reservation_{{ booking.id }}"
+                  >Data rozpoczęcia:</label
+                >
+                <input
+                  type="date"
+                  id="start_date_reservation_{{ booking.id }}"
+                  class="form-control"
+                  required
+                  value="{{ booking.start_date|date:'Y-m-d' }}"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <label for="end_date_reservation_{{ booking.id }}"
+                  >Data zakończenia:</label
+                >
+                <input
+                  type="date"
+                  id="end_date_reservation_{{ booking.id }}"
+                  class="form-control"
+                  required
+                  value="{{ booking.end_date|date:'Y-m-d' }}"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="booking__wrapper-card--btn">
+            {% if booking.is_booked %}
+            <button disabled style="background-color: #ff5722">Rezerwuj</button>
+            {% else %}
+            <button
+              style="background-color: #ff5722"
+              class="btnReservation"
+              data-booking-id="{{ booking.id }}"
+            >
+              Rezerwuj
+            </button>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
 </div>
 {% block extra_js %}
-<script src="{% static 'js/booking.js' %}"></script> 
-{% endblock %}
-
-
-
-  {% endblock %}
+<script src="{% static 'js/booking.js' %}"></script>
+{% endblock %} {% endblock %}

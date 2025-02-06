@@ -13,7 +13,7 @@ import json
 from django.template.loader import render_to_string
 from django.http import Http404
 from django.utils import formats
-
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 def booking_view (request):
@@ -30,7 +30,7 @@ class BookingUserListView(ListView):
         if username:
             try:
                 user = User.objects.get(username=username)
-                return Booking.objects.filter(user=user)
+                return Booking.objects.filter(user=user, is_booked=True)
             
             except User.DoesNotExist:
                 raise Http404("Użytkownik o takim username nie istnieje")
@@ -137,3 +137,13 @@ class BookingView(View):
         except json.JSONDecodeError:
             print("Błędny format danych:", request.body) 
             return JsonResponse({'status': 'error', 'message': 'Błędny format danych'})
+        
+
+# zwalnianie rezerwacji:
+class BookingDeleteView(View):
+    def delete(self, request, booking_id):
+        print(f"Zwalnianie rezerwacji z ID: {booking_id}")  
+        booking = get_object_or_404(Booking, id=booking_id)
+        booking.is_booked = False
+        booking.save()
+        return JsonResponse({'status': 'success'}, status=200)

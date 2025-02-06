@@ -4,6 +4,7 @@
   "description": "Rezerwacja samochodów",
   "main": "index.js",
   "scripts": {
+    "start": "py manage.py runserver",
     "format": "prettier --write \"**/*/templates/**/*.html\"",
     "aboutus_sass": "sass --watch aboutus/static/aboutus.scss:aboutus/static/aboutus.css --load-path=car_django/static",
     "booking_sass": "sass --watch booking/static/booking.scss:booking/static/booking.css --load-path=car_django/static",
@@ -14,7 +15,8 @@
     "users_sass": "sass --watch users/static/login.scss:users/static/login.css --load-path=car_django/static",
     "watch_sass": "npm-run-all --parallel aboutus_sass booking_sass car_django_sass contact_sass main_sass opinion_sass users_sass",
     "test_booking": "python manage.py test booking.test.test_booking",
-    "test_opinion": "python manage.py test opinion.test.test_opinion"
+    "test_opinion": "python manage.py test opinion.test.test_opinion",
+    "test_users": "python manage.py test users.test.test_user"
   },
   "keywords": [],
   "author": "",

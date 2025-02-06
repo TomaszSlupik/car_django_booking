@@ -1,3 +1,8 @@
+# Wypożyczalnia i rezerwaja samochów 
+
+Aplikacja umożliwia zarządzanie rezerwacjami sal konferencyjnych, oferując użytkownikom pełną kontrolę nad swoimi rezerwacjami. System zapewnia funkcje przeglądania, edytowania, usuwania rezerwacji oraz eksportowania danych, a także wspiera różne urządzenia i platformy. 
+
+
 ### 1. Technologie
 
 Aplikacja została zbudowana z wykorzystaniem następujących technologii:
