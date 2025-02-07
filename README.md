@@ -59,6 +59,16 @@ Główny projekt aplikacji znajduje się w **car_django**.
 Są to poszczególne mikroserwisy dla aplikacji. 
 
 
+## Przykładowe screenshots:
+
+### Mobilna wersja 
+
+![Mobilna wersja](car_django/assets/screenOne.jpg)
+
+![Mobilna wersja](car_django/assets/screenTwo.jpg)
+
+![Mobilna wersja](car_django/assets/screenThree.jpg)
+
 ## Testy:
 
 Aplikacja zawiera kompleksowe testy jednostkowe (Unit Tests), które zapewniają prawidłowe działanie każdego mikroserwisu. Każdy komponent systemu został starannie sprawdzony, aby zagwarantować jego poprawność oraz stabilność. Dzięki zastosowaniu testów, możliwe jest szybkie identyfikowanie i rozwiązywanie potencjalnych problemów, co przekłada się na wysoką jakość i niezawodność aplikacji.
@@ -78,6 +88,5 @@ Aplikacja zawiera kompleksowe testy jednostkowe (Unit Tests), które zapewniają
 - Tomasz Słupik
 
 
----dorobić uruchomienie aplikacji i screenschoty
 
 
