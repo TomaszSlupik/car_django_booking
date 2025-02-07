@@ -16,9 +16,27 @@ W przypadku braku konta, użytkownicy mają możliwość szybkiej i łatwej reje
 
 ### 2. Usunięcie Tokenu i Komunikaty Błędów
 
-W przypadku **utraty ważności tokenu** sesji użytkownik otrzymuje odpowiedni komunikat informujący o konieczności ponownego zalogowania się: <u>Musisz być zalogowany, aby korzystać z aplikacji.</u> System automatycznie wygeneruje komunikat informujący o wygaśnięciu sesji i przekieruje użytkownika do strony logowania.
+W przypadku **utraty ważności tokenu** sesji użytkownik otrzymuje odpowiedni komunikat informujący o konieczności ponownego zalogowania się: **Musisz być zalogowany, aby korzystać z aplikacji.** System automatycznie wygeneruje komunikat informujący o wygaśnięciu sesji i przekieruje użytkownika do strony logowania.
 
-### 1. Technologie
+### 3. Responsywność
+
+Aplikacja jest **responsywna**, co oznacza, że dostosowuje się do różnych urządzeń, w tym komputerów stacjonarnych, laptopów, tabletów oraz urządzeń mobilnych. Interfejs użytkownika zapewnia wygodne korzystanie zarówno na platformach webowych, jak i mobilnych.
+
+### 4. Główny Panel Aplikacji
+
+W głównym panelu aplikacji użytkownicy mają do wyboru cztery kluczowe moduły: **O nas**, **Rezerwacje**, **Opinie** oraz **Kontakt**.
+
+- **O nas**: W tym module znajdują się szczegółowe informacje o wypożyczalni.
+
+- **Rezerwacje**: Moduł ten pozwala na przeglądanie dostępnych pojazdów oraz dokonywanie rezerwacji na konkretne daty. Użytkownicy mogą łatwo zarezerwować wybrany samochód, co sprawia, że proces jest szybki i wygodny.
+
+- **Opinie**: W tej sekcji użytkownicy mają możliwość dodawania własnych opinii dotyczących korzystania z usług. 
+
+- **Kontakt**: Moduł ten zawiera formularz kontaktowy, który umożliwia łatwe skontaktowanie się z firmą w przypadku pytań lub potrzeb związanych z usługami.
+
+Dodatkowo, w górnej części panelu znajduje się sekcja użytkownika, w której można przeglądać własne rezerwacje oraz zarządzać nimi, w tym zwalniać rezerwacje, co zapewnia pełną kontrolę nad planowanymi podróżami.
+
+### 5. Technologie
 
 Aplikacja została zbudowana z wykorzystaniem następujących technologii:
 - **Django** – wykorzystywany do tworzenia backendu aplikacji, obsługujący logikę biznesową, autentykację, rezerwację samochodów oraz interakcję z bazą danych.
@@ -28,4 +46,38 @@ Aplikacja została zbudowana z wykorzystaniem następujących technologii:
 ## Wykorzystane technologie i narzędzia
 
 [![My Skills](https://skillicons.dev/icons?i=html,scss,bootstrap,sqlite,django,git,vscode,postman)](https://skillicons.dev)
+
+
+## Opis folderów:
+
+### car_django
+
+Główny projekt aplikacji znajduje się w **car_django**.
+
+### pozostałe foldery
+
+Są to poszczególne mikroserwisy dla aplikacji. 
+
+
+## Testy:
+
+Aplikacja zawiera kompleksowe testy jednostkowe (Unit Tests), które zapewniają prawidłowe działanie każdego mikroserwisu. Każdy komponent systemu został starannie sprawdzony, aby zagwarantować jego poprawność oraz stabilność. Dzięki zastosowaniu testów, możliwe jest szybkie identyfikowanie i rozwiązywanie potencjalnych problemów, co przekłada się na wysoką jakość i niezawodność aplikacji.
+
+
+## Instalacja
+
+### Aby pobrać repozytorium:
+
+```bash
+  git clone https://github.com/TomaszSlupik/car_django_booking.git
+```
+
+
+## Developer
+
+- Tomasz Słupik
+
+
+---dorobić uruchomienie aplikacji i screenschoty
+
 

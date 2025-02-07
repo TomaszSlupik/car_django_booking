@@ -14,6 +14,7 @@
     "opinion_sass": "sass --watch opinion/static/opinion.scss:opinion/static/opinion.css --load-path=car_django/static",
     "users_sass": "sass --watch users/static/login.scss:users/static/login.css --load-path=car_django/static",
     "watch_sass": "npm-run-all --parallel aboutus_sass booking_sass car_django_sass contact_sass main_sass opinion_sass users_sass",
+    "test_aboutus": "python manage.py test aboutus.test.test_aboutus",
     "test_booking": "python manage.py test booking.test.test_booking",
     "test_opinion": "python manage.py test opinion.test.test_opinion",
     "test_users": "python manage.py test users.test.test_user"
