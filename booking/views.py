@@ -109,9 +109,17 @@ class BookingView(View):
 
                     start_date_obj = datetime.strptime(start_date, '%Y-%m-%d')
                     end_date_obj = datetime.strptime(end_date, '%Y-%m-%d')
+
+                    # dodanie warunku na daty
+                    if end_date_obj < start_date_obj:
+                        print("Data końcowa jest wcześniejsza niż data początkowa.")
+                        return JsonResponse({'status': 'error', 'message': 'Data końcowa nie może być wcześniejsza niż data początkowa.'})
+                    
                     booking.is_booked = True
                     booking.start_date = start_date_obj
                     booking.end_date = end_date_obj
+
+                    
                     if username:  
                         try:
                             user = User.objects.get(username=username)  

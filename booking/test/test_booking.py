@@ -4,6 +4,7 @@ from booking.models import Booking
 from django.urls import reverse
 from django.contrib.auth.models import User
 from datetime import datetime
+from datetime import date
 
 class BookingModelTest(TestCase):
 
@@ -25,6 +26,12 @@ class BookingModelTest(TestCase):
         self.assertEqual(booking.start_date, '2025-02-06')
         self.assertEqual(booking.end_date, '2025-02-28')
         self.assertEqual(booking.user, self.user)
+
+    def test_str_book(self):
+        booking = Booking(name_car_booking='Testowa Honda')
+        self.assertEqual(str(booking), 'Testowa Honda')
+
+
 
 class BookingListViewTest (TestCase):
     
@@ -144,3 +151,17 @@ class BookingViewTest(TestCase):
         self.assertEqual(self.booking.start_date, datetime.strptime('2025-02-01', '%Y-%m-%d').date())
         self.assertEqual(self.booking.end_date, datetime.strptime('2025-02-28', '%Y-%m-%d').date())
         self.assertEqual(self.booking.user, self.user)  
+
+
+    # dodanie sprawdzeia na poprawność rezerwacji dat:
+    def test_end_date_before_start_date(self):
+        data = {
+            'booking_id': self.booking.id,
+            'start_date': '2025-02-28',
+            'end_date': '2025-02-06',
+            'username': 'test'
+        }
+
+        response = self.client.post(reverse('booking'), data=json.dumps(data), content_type='application/json')
+        self.assertEqual(response.status_code, 200)
+        self.assertJSONEqual(response.content, {'status': 'error', 'message': 'Data końcowa nie może być wcześniejsza niż data początkowa.'})
