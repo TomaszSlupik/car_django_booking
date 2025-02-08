@@ -69,9 +69,20 @@ Są to poszczególne mikroserwisy dla aplikacji.
 
 ![Mobilna wersja](car_django/assets/screenThree.jpg)
 
+
+### Desktopowa wersja 
+
+
+
 ## Testy:
 
 Aplikacja zawiera kompleksowe testy jednostkowe (Unit Tests), które zapewniają prawidłowe działanie każdego mikroserwisu. Każdy komponent systemu został starannie sprawdzony, aby zagwarantować jego poprawność oraz stabilność. Dzięki zastosowaniu testów, możliwe jest szybkie identyfikowanie i rozwiązywanie potencjalnych problemów, co przekłada się na wysoką jakość i niezawodność aplikacji.
+
+Aby uruchomić wszytskie testy:
+
+```bash
+npm run test
+```
 
 
 ## Instalacja
@@ -80,6 +91,18 @@ Aplikacja zawiera kompleksowe testy jednostkowe (Unit Tests), które zapewniają
 
 ```bash
   git clone https://github.com/TomaszSlupik/car_django_booking.git
+```
+
+### Uruchomienie Django:
+
+```bash
+  npm run start
+```
+
+lub 
+
+```bash
+py manage.py runserver
 ```
 
 

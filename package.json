@@ -17,7 +17,8 @@
     "test_aboutus": "python manage.py test aboutus.test.test_aboutus",
     "test_booking": "python manage.py test booking.test.test_booking",
     "test_opinion": "python manage.py test opinion.test.test_opinion",
-    "test_users": "python manage.py test users.test.test_user"
+    "test_users": "python manage.py test users.test.test_user",
+    "test": "npm-run-all --parallel test_aboutus test_booking test_opinion test_users"
   },
   "keywords": [],
   "author": "",
