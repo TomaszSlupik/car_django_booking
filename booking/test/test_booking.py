@@ -129,9 +129,10 @@ class BookingViewTest(TestCase):
 
     def test_booking_success(self):
 
+        today = datetime.today().date() 
         data = {
             'booking_id': self.booking.id,
-            'start_date': '2025-02-01',
+            'start_date': today.strftime('%Y-%m-%d'),
             'end_date': '2025-02-28',
             'username': self.user.username
         }
@@ -148,7 +149,7 @@ class BookingViewTest(TestCase):
         # czy rezerwacja została poprawnie zarezerwowana 
         self.booking.refresh_from_db()  
         self.assertTrue(self.booking.is_booked)
-        self.assertEqual(self.booking.start_date, datetime.strptime('2025-02-01', '%Y-%m-%d').date())
+        self.assertEqual(self.booking.start_date, today) 
         self.assertEqual(self.booking.end_date, datetime.strptime('2025-02-28', '%Y-%m-%d').date())
         self.assertEqual(self.booking.user, self.user)  
 
@@ -165,3 +166,17 @@ class BookingViewTest(TestCase):
         response = self.client.post(reverse('booking'), data=json.dumps(data), content_type='application/json')
         self.assertEqual(response.status_code, 200)
         self.assertJSONEqual(response.content, {'status': 'error', 'message': 'Data końcowa nie może być wcześniejsza niż data początkowa.'})
+
+
+    # dodanie sprawdzenia na początkową datę do dzisiejszej 
+    def test_start_date_before_today(self):
+        data = {
+            'booking_id': self.booking.id,
+            'start_date': '2025-02-07',
+            'end_date': '2025-02-28',
+            'username': 'test'
+        }
+
+        response = self.client.post(reverse('booking'), data=json.dumps(data), content_type='application/json')
+        self.assertEqual(response.status_code, 200)
+        self.assertJSONEqual(response.content, {'status': 'error', 'message': 'Data rozpoczęcia nie może być wcześniejsza niż dzisiejsza.'})

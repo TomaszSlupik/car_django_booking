@@ -65,6 +65,14 @@ class BookingListView(ListView):
             is_booked = is_booked.lower() == 'true' 
             queryset = queryset.filter(is_booked=is_booked)
 
+        # zwalniam rezerwację., jeżeli jest już nieaktualna:
+        today = datetime.today().date()
+        for booking in queryset:
+            if booking.end_date and booking.end_date < today:
+                booking.is_booked = False
+                booking.save()
+                print(f"Rezerwacja z ID {booking.id} została zwolniona, ponieważ data zakończenia jest wcześniejsza niż dzisiejsza.")
+
         return queryset 
     
     def get_context_data(self, **kwargs):
@@ -109,6 +117,12 @@ class BookingView(View):
 
                     start_date_obj = datetime.strptime(start_date, '%Y-%m-%d')
                     end_date_obj = datetime.strptime(end_date, '%Y-%m-%d')
+
+                    # warunek na datę początkową:
+                    today = datetime.today().date()
+                    if start_date_obj.date() < today:
+                         print("Data rozpoczęcia jest wcześniejsza niż dzisiejsza.")
+                         return JsonResponse({'status': 'error', 'message': 'Data rozpoczęcia nie może być wcześniejsza niż dzisiejsza.'})
 
                     # dodanie warunku na daty
                     if end_date_obj < start_date_obj:
