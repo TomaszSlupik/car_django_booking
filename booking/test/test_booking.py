@@ -3,7 +3,7 @@ from django.test import TestCase
 from booking.models import Booking
 from django.urls import reverse
 from django.contrib.auth.models import User
-from datetime import datetime
+from datetime import datetime, timedelta
 from datetime import date
 
 class BookingModelTest(TestCase):
@@ -44,6 +44,7 @@ class BookingListViewTest (TestCase):
 
         self.url = reverse('booking_list')
 
+
     # sprawdzam czy są zarezerwowane:
     def test_is_booked_true(self):
 
@@ -81,6 +82,53 @@ class BookingListViewTest (TestCase):
         self.assertIn(self.booking_2, bookings)
         self.assertIn(self.booking_3, bookings)
         self.assertIn(self.booking_4, bookings)
+
+
+
+
+class BookingListViewExpireTest(TestCase):
+    # Tworzę symulację danych:
+    def setUp(self):
+        
+        # rezerwacja, które wygasły:
+        today = datetime.today().date()
+        self.booking_5 = Booking.objects.create(
+            name_car_booking='Hyundai i30',
+            is_booked=True,
+            start_date='2025-02-01',
+            end_date='2025-02-04'  
+        )
+
+        # rezerwacja w przyszłość
+        self.booking_6 = Booking.objects.create(
+            name_car_booking='Toyota Corolla',
+            is_booked=True,
+            start_date='2025-02-01',
+            end_date=today + timedelta(days=1)  
+        )
+
+
+        # czy wygasły 
+    def test_expired_booking(self):
+        today = datetime.today().date()
+        # na początku mamy True:
+        self.assertTrue(self.booking_5.is_booked)  
+        self.assertTrue(self.booking_6.is_booked) 
+
+
+        queryset = Booking.objects.all()  
+        for booking in queryset:
+            if booking.end_date and booking.end_date < today:
+                booking.is_booked = False
+                booking.save()
+
+        self.booking_5.refresh_from_db()
+        self.booking_6.refresh_from_db()
+
+        # rezerwacja zwolniona:
+        self.assertFalse(self.booking_5.is_booked)
+        # rezerwacja w przyszłość:
+        self.assertTrue(self.booking_6.is_booked)
 
 
 class BookingSearchViewTest (TestCase):

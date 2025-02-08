@@ -4,9 +4,19 @@
   
     Array.from(forms).forEach(form => {
       form.addEventListener('submit', event => {
-        if (!form.checkValidity()) {
-          event.preventDefault()
+        event.preventDefault(); 
+        if (form.checkValidity()) {
+          Swal.fire({
+            title: 'Twoja wiadomość została wysłana',
+            text: "Wszystko przebiegło pomyślnie",
+            icon: 'success',
+            confirmButtonText: 'Akceptuję',
+            reverseButtons: true
+          })
+        }
+        else {
           event.stopPropagation()
+          event.preventDefault(); 
         }
   
         form.classList.add('was-validated')
