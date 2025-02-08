@@ -47,6 +47,7 @@ textarea {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     overflow: hidden; 
+    min-height: 715px;
 }
 
 .btn-form {
@@ -246,6 +247,6 @@ input, textarea {
 
 @media only screen and (min-width: 576px) {
     .car-form {
-        min-height: 595px;
+        min-height: 690px;
     }
 }
