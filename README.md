@@ -72,6 +72,11 @@ Są to poszczególne mikroserwisy dla aplikacji.
 
 ### Desktopowa wersja 
 
+![Desktopowa wersja](car_django/assets/screenFour.jpg)
+
+![Desktopowa wersja](car_django/assets/screenFive.jpg)
+
+![Desktopowa wersja](car_django/assets/screenSix.jpg)
 
 
 ## Testy:
