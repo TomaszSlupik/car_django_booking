@@ -98,11 +98,24 @@ npm run test
   git clone https://github.com/TomaszSlupik/car_django_booking.git
 ```
 
+### Przejdź do katalogu car_django_booking, instalacja wszystkich paczek:
+
+```bash
+  pip install -r requirements.txt
+```
+
 ### Instalacja zależności:
 
 ```bash
   npm install
 ```
+
+### Włączenie i kompilacja wszystkich styli scss:
+
+```bash
+npm run watch_sass
+```
+
 
 ### Uruchomienie Django:
 
@@ -115,13 +128,6 @@ lub
 ```bash
 py manage.py runserver
 ```
-
-### Włączenie i kompilacja wszystkich styli scss:
-
-```bash
-npm run watch_sass
-```
-
 
 ## Developer
 
