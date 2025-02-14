@@ -45,7 +45,7 @@ Aplikacja została zbudowana z wykorzystaniem następujących technologii:
 
 ## Wykorzystane technologie i narzędzia
 
-[![My Skills](https://skillicons.dev/icons?i=html,scss,bootstrap,sqlite,django,git,vscode,postman)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=html,scss,bootstrap,javascript,sqlite,django,git,vscode,postman)](https://skillicons.dev)
 
 
 ## Opis folderów:
